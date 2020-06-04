@@ -1,0 +1,57 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+label {
+    display: block;
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    color: #0b7dda;
+    font-weight: 600;
+}
+
+
+form #movie-title {
+    float: left;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    width: 20em;
+    background: #2196f31f;
+    margin-bottom: 2em;
+}
+
+form button {
+    float: left;
+    width: 5em;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #0b7dda;
+}
+
+#movie-details {
+    clear: both;
+    font-size: 1.5em;
+}
+
+#movie-details a {
+    text-decoration: none;
+}
+
+#movie-details a:visited {
+    color: purple;
+}
+
+#movie-details a:hover {
+    color: #0b7dda;
+}
