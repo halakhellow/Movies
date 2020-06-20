@@ -11,11 +11,14 @@
 
 <body>
     <form>
-        <label for="movie-title">Which Movie You'd Like To Know About ?</label>
-        <input type="text" id="movie-title" name="search" placeholder="Search..">
-        <button type="button" id="btn"><span class="fa fa-search"></span></button>
+        <label for="movie-search">Enter a movie name to start searching :</label>
+        <input type="text" id="movie-search" name="search" placeholder="Search..">
+        <button type="button" id="search-btn"><span class="fa fa-search"></span></button> <br>
+        <p class="latest">To See The Latest Movies : <i class="fas fa-angle-double-right"></i></p>
+        <button type="button" id="latest-movies-btn">Click here</button>
     </form>
     <div id="movie-details"></div>
+    <div id="latest-movies"></div>
 
     <script src="main.js"></script>
 </body>
