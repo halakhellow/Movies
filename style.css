@@ -49,20 +49,23 @@ form button:hover {
   color: #9c27b0;
   font-weight: bold;
 }
+
 .latest i {
   color: black;
 }
 
-#movie-details .card {
-  position: relative;
-  float: left;
-  width: 15em;
-  margin: 2em;
-  border-radius: 4%;
-  padding: 0.3em;
-  background-color: #f1e2eb;
-  height: 25em;
+#movie-details {
+  display: flex;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
 }
+
+#movie-details .card {
+  float: left;
+  width: 18rem;
+  margin: 3rem;
+}
+
 #movie-details .card:hover {
   cursor: pointer;
   transform: scale(1.2);
@@ -70,26 +73,12 @@ form button:hover {
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
 }
 
-#movie-details .poster-container {
-  height: 80%;
-}
 
-#movie-details .poster-container img {
-  width: 100%;
-  height: 100%;
-  border-top-right-radius: 4%;
-  border-top-left-radius: 4%;
-}
-
-#movie-details .content-container {
+#movie-details .card-body {
   text-align: center;
-  line-height: 2em;
-  position: absolute;
-  top: 80%;
-  left: 13%;
 }
 
-#movie-details .content-container h4 {
+#movie-details .card-body h4 {
   font-size: 20px;
   color: #4d5076;
 }
