@@ -11,14 +11,19 @@
 </head>
 
 <body>
-    <form>
-        <label for="movie-search">Enter a movie name to start searching :</label>
-        <input type="text" id="movie-search" name="search" placeholder="Search..">
-        <button type="button" id="search-btn"><span class="fa fa-search"></span></button> <br>
-        <p class="latest">To See The Latest Movies : <i class="fas fa-angle-double-right"></i></p>
-        <button type="button" id="latest-movies-btn">Click here</button>
-    </form>
-    <div id="movie-details" class="card-group"></div>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+            <label class="mr-2" for="movie-search">Enter a movie name to search : </label>
+            <input id="movie-search" class="form-control mr-1" placeholder="Search...">
+            <button id="search-btn" class="btn btn-outline-primary mr-2">
+                <span class="fa fa-search"></span>
+            </button>
+            <span class="mr-2">OR to see the latest movies : </span>
+            <button id="latest-movies-btn" class=" btn btn-outline-primary my-2 my-sm-0">Click Here</button>
+
+        </form>
+    </nav>
+    <div id="movie-details"></div>
     <div id="latest-movies"></div>
 
     <script src="main.js"></script>

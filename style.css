@@ -6,52 +6,28 @@
   padding: 0;
 }
 
-label {
-  display: block;
-  text-align: center;
-  font-size: 2.3em;
-  margin: 0.7em;
-  color: #9c27b0;
-  font-weight: 600;
-}
 
-form #movie-search {
-  float: left;
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  width: 32vw;
-  background: #2196f30f;
-  margin-bottom: 2em;
-  margin-left: 30vw;
-}
 
-form #search-btn {
-  float: left;
-  width: 8vw;
-  padding: 10px;
-  background: #2196f3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
-}
-
-form button:hover {
-  background: #0b7dda;
-}
-
-.latest {
-  clear: both;
-  font-size: 1.5em;
-  text-align: center;
-  color: #9c27b0;
+nav form label,
+nav form span {
+  font-size: 30px;
   font-weight: bold;
 }
 
-.latest i {
-  color: black;
+nav form #movie-search {
+  width: 17rem;
+  height: 3rem;
+  font-size: 25px;
+}
+
+nav form button {
+  width: 4rem;
+  height: 3rem;
+}
+
+nav form #latest-movies-btn {
+  width: auto;
+  font-size: 18px;
 }
 
 #movie-details {
@@ -63,7 +39,7 @@ form button:hover {
 #movie-details .card {
   float: left;
   width: 18rem;
-  margin: 3rem;
+  margin: 5rem 2rem 0 1rem;
 }
 
 #movie-details .card:hover {
