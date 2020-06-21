@@ -40,6 +40,9 @@ function getDetails() {
 
                         movieCard.classList.add("card", "border-info");
                         moviePoster.setAttribute("src", `https://image.tmdb.org/t/p/w500/${i.poster_path}`);
+                        if (i.poster_path == null) {
+                            moviePoster.setAttribute("src", "assets/images/noimage.png");
+                        }
                         moviePoster.classList.add("card-img-top");
                         tmdbUrl.href = `https://www.themoviedb.org/movie/${i.id}`;
                         tmdbUrl.setAttribute("target", "_blank");
@@ -55,6 +58,7 @@ function getDetails() {
                         movieCard.appendChild(tmdbUrl);
                         movieCard.appendChild(contentContainer);
                         movieDetails.appendChild(movieCard);
+
                     })
 
 
