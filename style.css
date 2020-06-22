@@ -33,10 +33,25 @@ nav form #latest-movies-btn {
   font-size: 18px;
 }
 
+#alert-msg {
+  display: none;
+}
+
+#alert-msg,
+#alert-msg button span {
+  text-align: center;
+  font-size: 2em;
+}
+
 #movie-details {
   display: flex;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
+}
+
+#movie-details span {
+  display: block;
+  font-size: 3em;
 }
 
 #movie-details .card {

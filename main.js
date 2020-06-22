@@ -2,6 +2,7 @@
 let movieSearch = document.getElementById("movie-search"),
     searchButton = document.getElementById("search-btn"),
     latestMovies = document.getElementById("latest-movies-btn"),
+    alertMsg = document.getElementById("alert-msg"),
     movieDetails = document.getElementById("movie-details");
 
 movieSearch.addEventListener("keydown", function (event) {
@@ -18,7 +19,8 @@ searchButton.onclick = function () {
 function getDetails() {
     if (movieSearch.value === "") {
         movieDetails.innerHTML = "";
-        movieDetails.innerHTML = "Please Enter a Movie Title To Search";
+        alertMsg.style.display = "block";
+        alertMsg.innerHTML = "Please Enter a Movie Title To Search";
     } else {
         movieDetails.innerHTML = "";
         fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${movieSearch.value}`)
@@ -26,8 +28,10 @@ function getDetails() {
             .then((data) => {
                 console.log(data);
                 if (data.results.length == 0) {
-                    movieDetails.innerHTML = "This is not a Movie name";
+                    alertMsg.innerHTML = "This is not a movie name!";
+                    alertMsg.style.display = "block";
                 } else {
+                    alertMsg.style.display = "none";
                     data.results.map((i) => {
                         let movieCard = document.createElement("div"),
                             movieTitleTag = document.createElement("h4"),
