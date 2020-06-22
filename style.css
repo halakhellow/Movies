@@ -57,7 +57,7 @@ nav form #popular-movies-btn {
 #movie-details .card {
   float: left;
   width: 18rem;
-  margin: 5rem 2rem 0 1rem;
+  margin: 5rem 0 0 3rem;
 }
 
 #movie-details .card:hover {
