@@ -38,7 +38,7 @@ function getDetails() {
                             year = document.createTextNode(`Year Released : ${i.release_date}`),
                             tmdbUrl = document.createElement("a");
 
-                        movieCard.classList.add("card", "border-info");
+                        movieCard.classList.add("card", "border-dark");
                         moviePoster.setAttribute("src", `https://image.tmdb.org/t/p/w500/${i.poster_path}`);
                         if (i.poster_path == null) {
                             moviePoster.setAttribute("src", "assets/images/noimage.png");

@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Movies</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c339c56859.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar text-light bg-dark p-4">
         <form class="form-inline">
             <label class="mr-2" for="movie-search">Enter a movie name to search : </label>
-            <input id="movie-search" class="form-control mr-1" placeholder="Search...">
-            <button id="search-btn" class="btn btn-outline-primary mr-2">
+            <input id="movie-search" class="form-control mr-1" placeholder="Search..." autofocus>
+            <button id="search-btn" class="btn btn-danger mr-2">
                 <span class="fa fa-search"></span>
             </button>
             <span class="mr-2">OR to see the latest movies : </span>
-            <button id="latest-movies-btn" class=" btn btn-outline-primary my-2 my-sm-0">Click Here</button>
+            <button id="latest-movies-btn" class="btn btn-danger my-2 my-sm-0">Click Here</button>
 
         </form>
     </nav>
