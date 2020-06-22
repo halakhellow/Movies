@@ -82,7 +82,7 @@ function getPopular() {
     fetch("https://api.themoviedb.org/3/movie/popular?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc")
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
+            alertMsg.style.display = "none";
             data.results.map((popular) => {
                 makeCards(popular);
             })
