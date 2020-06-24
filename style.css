@@ -13,19 +13,19 @@ body {
 
 nav form label,
 nav form span {
-  font-size: 30px;
+  font-size: 27px;
   font-weight: bold;
 }
 
 nav form #movie-search {
-  width: 17rem;
-  height: 3rem;
-  font-size: 25px;
+  width: 16rem;
+  height: 2.5rem;
+  font-size: 23px;
 }
 
 nav form button {
-  width: 4rem;
-  height: 3rem;
+  width: 3rem;
+  height: 2.5rem;
 }
 
 nav form #popular-movies-btn {
