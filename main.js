@@ -54,37 +54,33 @@ function makeCards(i) {
 
 };
 
-function getDetails() {
+async function getDetails() {
     if (movieSearch.value === "") {
         movieDetails.innerHTML = "";
         alertMsg.style.display = "block";
         alertMsg.innerHTML = "Please Enter a Movie Title To Search";
     } else {
         movieDetails.innerHTML = "";
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${movieSearch.value}`)
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.results.length == 0) {
-                    alertMsg.innerHTML = "This is not a movie name!";
-                    alertMsg.style.display = "block";
-                } else {
-                    alertMsg.style.display = "none";
-                    data.results.map((result) => {
-                        makeCards(result);
-                    })
-                }
+        let res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${movieSearch.value}`),
+            data = await res.json();
+        if (data.results.length == 0) {
+            alertMsg.innerHTML = "This is not a movie name!";
+            alertMsg.style.display = "block";
+        } else {
+            alertMsg.style.display = "none";
+            data.results.map((result) => {
+                makeCards(result);
             })
+        }
     }
 };
 
-function getPopular() {
+async function getPopular() {
     movieDetails.innerHTML = "";
-    fetch("https://api.themoviedb.org/3/movie/popular?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc")
-        .then((res) => res.json())
-        .then((data) => {
-            alertMsg.style.display = "none";
-            data.results.map((popular) => {
-                makeCards(popular);
-            })
-        })
+    alertMsg.style.display = "none";
+    let res = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
+        data = await res.json();
+    data.results.map((popular) => {
+        makeCards(popular);
+    })
 };
