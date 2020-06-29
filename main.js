@@ -2,6 +2,7 @@
 let movieSearch = document.getElementById("movie-search"),
     searchButton = document.getElementById("search-btn"),
     popularMovies = document.getElementById("popular-movies-btn"),
+    loader = document.getElementById("loader"),
     alertMsg = document.getElementById("alert-msg"),
     movieDetails = document.getElementById("movie-details");
 
@@ -21,7 +22,13 @@ popularMovies.addEventListener("click", function (event) {
     getPopular();
 });
 
+
+window.onload = function () {
+    loader.style.display = "none";
+}
+
 function makeCard(result) {
+    loader.style.display = "block";
     let movieCard = document.createElement("div"),
         movieTitleTag = document.createElement("h4"),
         movieTitle = document.createTextNode(result.title),
@@ -56,6 +63,7 @@ function makeCard(result) {
 
 async function getDetails() {
     if (movieSearch.value === "") {
+        loader.style.display = "none";
         movieDetails.innerHTML = "";
         alertMsg.style.display = "block";
         alertMsg.innerHTML = "Please Enter a Movie Title To Search";
@@ -64,6 +72,7 @@ async function getDetails() {
         let res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${movieSearch.value}`),
             data = await res.json();
         if (data.results.length == 0) {
+            loader.style.display = "none";
             alertMsg.innerHTML = "This is not a movie name!";
             alertMsg.style.display = "block";
         } else {
