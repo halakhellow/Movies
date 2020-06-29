@@ -21,23 +21,23 @@ popularMovies.addEventListener("click", function (event) {
     getPopular();
 });
 
-function makeCards(i) {
+function makeCard(result) {
     let movieCard = document.createElement("div"),
         movieTitleTag = document.createElement("h4"),
-        movieTitle = document.createTextNode(i.title),
+        movieTitle = document.createTextNode(result.title),
         moviePoster = document.createElement("img"),
         contentContainer = document.createElement("div"),
         yearTag = document.createElement("p"),
-        year = document.createTextNode(`Year Released : ${i.release_date}`),
+        year = document.createTextNode(`Year Released : ${result.release_date}`),
         tmdbUrl = document.createElement("a");
 
     movieCard.classList.add("card", "border-dark");
-    moviePoster.setAttribute("src", `https://image.tmdb.org/t/p/w500/${i.poster_path}`);
-    if (i.poster_path == null) {
+    moviePoster.setAttribute("src", `https://image.tmdb.org/t/p/w500/${result.poster_path}`);
+    if (result.poster_path == null) {
         moviePoster.setAttribute("src", "assets/images/noimage.png");
     }
     moviePoster.classList.add("card-img-top");
-    tmdbUrl.href = `https://www.themoviedb.org/movie/${i.id}`;
+    tmdbUrl.href = `https://www.themoviedb.org/movie/${result.id}`;
     tmdbUrl.setAttribute("target", "_blank");
     movieTitleTag.appendChild(movieTitle);
     movieTitleTag.classList.add("card-title");
@@ -69,7 +69,7 @@ async function getDetails() {
         } else {
             alertMsg.style.display = "none";
             data.results.map((result) => {
-                makeCards(result);
+                makeCard(result);
             })
         }
     }
@@ -81,6 +81,6 @@ async function getPopular() {
     let res = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
         data = await res.json();
     data.results.map((popular) => {
-        makeCards(popular);
+        makeCard(popular);
     })
 };
