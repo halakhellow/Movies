@@ -108,6 +108,11 @@ nav form #popular-movies-btn {
   margin: 5rem 0 0 3rem;
 }
 
+#movie-details .card a img {
+  height: 27em;
+  border-bottom: 1px solid black;
+}
+
 #movie-details .card:hover {
   cursor: pointer;
   transform: scale(1.2);
