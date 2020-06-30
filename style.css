@@ -16,9 +16,26 @@ nav {
   color: ghostwhite;
 }
 
+nav ul li .nav-link {
+  color: ghostwhite;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+}
+
+nav ul li .nav-link:hover {
+  color: #dc3438;
+  transition: 0.5s;
+}
+
+nav ul li .dropdown-menu a:hover {
+  background-color: #dc3438;
+  color: ghostwhite;
+}
+
 nav form {
   background-color: ghostwhite;
-  height: 3rem;
+  height: 2.6rem;
   border-radius: 40px;
 
 }
@@ -39,36 +56,34 @@ nav form #search-input {
 nav form #search-btn {
   color: white;
   float: right;
-  width: 3rem;
-  height: 3rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 50%;
   background: #dc3438;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.5s;
 }
 
 nav form span {
-  font-size: 25px;
-  font-weight: bold;
+  font-size: 23px;
 }
 
 nav form:hover {
-  border: 2px solid #dc3438;
+  border: 3px solid #dc3438;
 }
 
 nav form:hover #search-input {
-  padding: 2px 1em;
-  width: 14rem;
-  font-size: 22px;
+  padding: 0 1em;
+  width: 12rem;
+  font-size: 20px;
 }
 
 nav form:hover #search-btn {
   background: ghostwhite;
   color: #2f3640;
-  height: 2.7rem;
+  height: 2.2rem;
 }
 
 nav form #popular-movies-btn {
@@ -129,7 +144,14 @@ nav form #popular-movies-btn {
 
 #alert-msg {
   text-align: center;
-  font-size: 2em;
+  font-size: 1.7em;
+}
+
+h1 {
+  display: none;
+  text-align: center;
+  margin-top: 1em;
+  color: #dc3438;
 }
 
 #movie-details {
@@ -146,7 +168,7 @@ nav form #popular-movies-btn {
 #movie-details .card {
   float: left;
   width: 18rem;
-  margin: 5rem 1rem 0 3rem;
+  margin: 3rem 0 0 3rem;
 }
 
 #movie-details .card a img {
@@ -156,7 +178,7 @@ nav form #popular-movies-btn {
 
 #movie-details .card:hover {
   cursor: pointer;
-  transform: scale(1.2);
+  transform: scale(1.1);
   transition: 1s;
   box-shadow: 5px 5px 15px #dc3545, -5px -5px 15px #dc3545;
 }
