@@ -66,7 +66,7 @@ function makeCard(result) {
     yearTag.classList.add("card-text");
 
     if (result.release_date == "") {
-        yearTag.innerHTML = "Year Released : unKnown ."
+        yearTag.innerHTML = "Year Released : unKnown "
     }
 
     tmdbUrl.appendChild(moviePoster);

@@ -167,12 +167,13 @@ h1 {
 
 #movie-details .card {
   float: left;
-  width: 18rem;
+  height: auto;
+  width: 15rem;
   margin: 3rem 0 0 3rem;
 }
 
 #movie-details .card a img {
-  height: 27em;
+  height: 19em;
   border-bottom: 1px solid black;
 }
 
@@ -186,11 +187,11 @@ h1 {
 
 #movie-details .card-body {
   text-align: center;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 #movie-details .card-body h4 {
-  font-size: 25px;
+  font-size: 23px;
   font-weight: bold;
   color: #dc2738;
 }
