@@ -12,18 +12,25 @@
 </head>
 
 <body>
-    <nav class="navbar text-light bg-dark p-4 justify-content-between">
-        <a class="navbar-brand">Navbar</a>
-        <form>
-            <input id="search-input" placeholder="Search . . ." autofocus>
-            <button id="search-btn">
-                <span class="fa fa-search"></span>
-            </button>
-        </form>
-    </nav>
-    <div id="loader"></div>
-    <span id="alert-msg" class="alert alert-danger"></span>
-    <div id="movie-details"></div>
+    <div id="page-container">
+        <div id="content-wrap">
+            <nav class="navbar p-4 justify-content-between">
+                <a class="navbar-brand">Navbar</a>
+                <form>
+                    <input id="search-input" placeholder="Search . . ." autofocus>
+                    <button id="search-btn">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </form>
+            </nav>
+            <div id="loader"></div>
+            <span id="alert-msg" class="alert alert-danger"></span>
+            <div id="movie-details"></div>
+        </div>
+        <footer class="text-center">
+            <p> <span> &copy; </span> Hala Alkhellow , &nbsp; All Rights Reserved <span> &reg; </span> </p>
+        </footer>
+    </div>
 
     <script src="main.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

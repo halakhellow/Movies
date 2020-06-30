@@ -11,6 +11,11 @@ body {
   font-family: 'Titillium Web', cursive;
 }
 
+nav {
+  background-color: #1c1e21;
+  color: ghostwhite;
+}
+
 nav form {
   background-color: ghostwhite;
   height: 3rem;
@@ -141,7 +146,7 @@ nav form #popular-movies-btn {
 #movie-details .card {
   float: left;
   width: 18rem;
-  margin: 5rem 0 0 3rem;
+  margin: 5rem 1rem 0 3rem;
 }
 
 #movie-details .card a img {
@@ -166,4 +171,27 @@ nav form #popular-movies-btn {
   font-size: 25px;
   font-weight: bold;
   color: #dc2738;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 7rem;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  background-color: #1c1e21;
+  color: ghostwhite;
+}
+
+footer p span {
+  font-size: 1.5rem;
+  vertical-align: middle;
 }
