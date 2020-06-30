@@ -12,15 +12,13 @@
 </head>
 
 <body>
-    <nav class="navbar text-light bg-dark p-4">
-        <form class="form-inline">
-            <label class="mr-2" for="movie-search">Enter a movie name to search : </label>
-            <input id="movie-search" class="form-control mr-1" placeholder="Search . . ." autofocus>
-            <button id="search-btn" class="btn btn-danger mr-2">
+    <nav class="navbar text-light bg-dark p-4 justify-content-between">
+        <a class="navbar-brand">Navbar</a>
+        <form>
+            <input id="search-input" placeholder="Search . . ." autofocus>
+            <button id="search-btn">
                 <span class="fa fa-search"></span>
             </button>
-            <span class="mr-2">OR to see the popular movies : </span>
-            <button id="popular-movies-btn" class="btn btn-danger my-2 my-sm-0">Click Here</button>
         </form>
     </nav>
     <div id="loader"></div>

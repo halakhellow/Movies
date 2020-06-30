@@ -11,22 +11,59 @@ body {
   font-family: 'Titillium Web', cursive;
 }
 
+nav form {
+  background-color: ghostwhite;
+  height: 3rem;
+  border-radius: 40px;
 
-nav form label,
+}
+
+nav form #search-input {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: black;
+  transition: 0.5s;
+  line-height: 40px;
+  width: 0px;
+
+}
+
+nav form #search-btn {
+  color: white;
+  float: right;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #dc3438;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+
 nav form span {
-  font-size: 27px;
+  font-size: 25px;
   font-weight: bold;
 }
 
-nav form #movie-search {
-  width: 16rem;
-  height: 2.5rem;
-  font-size: 23px;
+nav form:hover {
+  border: 2px solid #dc3438;
 }
 
-nav form button {
-  width: 3rem;
-  height: 2.5rem;
+nav form:hover #search-input {
+  padding: 2px 1em;
+  width: 14rem;
+  font-size: 22px;
+}
+
+nav form:hover #search-btn {
+  background: ghostwhite;
+  color: #2f3640;
+  height: 2.7rem;
 }
 
 nav form #popular-movies-btn {
@@ -85,8 +122,7 @@ nav form #popular-movies-btn {
   display: none;
 }
 
-#alert-msg,
-#alert-msg button span {
+#alert-msg {
   text-align: center;
   font-size: 2em;
 }
