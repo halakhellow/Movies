@@ -1,7 +1,7 @@
 "use strict";
-let movieSearch = document.getElementById("movie-search"),
+let movieSearch = document.getElementById("search-input"),
     searchButton = document.getElementById("search-btn"),
-    popularMovies = document.getElementById("popular-movies-btn"),
+    // popularMovies = document.getElementById("popular-movies-btn"),
     loader = document.getElementById("loader"),
     alertMsg = document.getElementById("alert-msg"),
     movieDetails = document.getElementById("movie-details");
@@ -17,10 +17,10 @@ searchButton.addEventListener("click", function (event) {
     event.preventDefault();
     getDetails();
 });
-popularMovies.addEventListener("click", function (event) {
+/*popularMovies.addEventListener("click", function (event) {
     event.preventDefault();
     getPopular();
-});
+});*/
 
 
 window.onload = function () {
@@ -50,6 +50,11 @@ function makeCard(result) {
     movieTitleTag.classList.add("card-title");
     yearTag.appendChild(year);
     yearTag.classList.add("card-text");
+
+    if (result.release_date == "") {
+        yearTag.innerHTML = "Year Released : unKnown ."
+    }
+
     tmdbUrl.appendChild(moviePoster);
     contentContainer.appendChild(movieTitleTag);
     contentContainer.appendChild(yearTag);
@@ -84,7 +89,7 @@ async function getDetails() {
     }
 };
 
-async function getPopular() {
+/*async function getPopular() {
     movieDetails.innerHTML = "";
     alertMsg.style.display = "none";
     let res = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
@@ -92,4 +97,4 @@ async function getPopular() {
     data.results.map((popular) => {
         makeCard(popular);
     })
-};
+};*/
