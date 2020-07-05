@@ -101,7 +101,7 @@ async function getDetails() {
             data = await res.json();
         if (data.results.length == 0) {
             clearInfos();
-            alertMsg.innerHTML = "This is not a movie name!";
+            alertMsg.innerHTML = "No Results, Please Try Again";
         } else {
             alertMsg.style.display = "none";
             data.results.map((result) => {
