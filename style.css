@@ -151,7 +151,7 @@ nav form #popular-movies-btn {
   font-size: 1.7em;
 }
 
-h1 {
+#home-title {
   display: none;
   text-align: center;
   margin-top: 1em;
@@ -221,4 +221,31 @@ footer {
 footer p span {
   font-size: 1.5rem;
   vertical-align: middle;
+}
+
+/* MOVIE DETAILS PAGE CODE */
+
+#actors li {
+  width: 12.5%;
+  margin-right: 17px;
+  padding: 5px 0;
+  vertical-align: top;
+}
+
+#actors li a img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  margin-bottom: 0.3em;
+}
+
+#actors li h6 {
+  text-align: center;
+  font-size: 18px;
+}
+
+#actors li p {
+  text-align: center;
+  color: #636363;
+  font-size: 12px;
 }
