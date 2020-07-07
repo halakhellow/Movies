@@ -146,7 +146,7 @@ async function getUpcoming() {
 // MOVIE DETAILS PAGE CODE
 
 function movieDetails(id) {
-    sessionStorage.setItem("movieId", id);
+    localStorage.setItem("movieId", id);
     window.location = "details.html";
 }
 
@@ -177,7 +177,7 @@ function stars(rating) {
 }
 
 function getMovie() {
-    let movieId = sessionStorage.getItem("movieId");
+    let movieId = localStorage.getItem("movieId");
 
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
         .then((res) => res.json())
