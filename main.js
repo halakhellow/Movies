@@ -186,14 +186,19 @@ function getMovie() {
 
             document.getElementById("poster").setAttribute("src", `https://image.tmdb.org/t/p/original/${data.poster_path}`);
             document.getElementById("title").innerHTML = data.title;
-            document.getElementById("genre").innerHTML = `Genre : ${data.genres[0].name} , ${data.genres[1].name} `;
             document.getElementById("date").innerHTML = `Released : ${data.release_date}`;
             document.getElementById("runtime").innerHTML = `Runtime : ${data.runtime} Minutes`;
-            (data.overview == "") ? document.getElementById("overview").innerHTML = "Overview Not Available": document.getElementById("overview").innerHTML = data.overview;
+            (data.overview == "") ? document.getElementById("overview").innerHTML = " Overview Not Available ": document.getElementById("overview").innerHTML = data.overview;
             document.getElementById("tmdb-url").href = `https://www.themoviedb.org/movie/${movieId}`;
 
             let starRate = stars(data.vote_average);
             document.getElementById("rate").innerHTML = `Rating : ${starRate}`;
+
+            let genre = "";
+            for (let i = 0; i < data.genres.length; i++) {
+                (i == data.genres.length - 1) ? genre += ` ${data.genres[i].name} `: genre += ` ${data.genres[i].name} , `;
+            }
+            document.getElementById("genre").innerHTML = `Genre : ${genre}  `;
 
 
         });
@@ -208,7 +213,8 @@ function getMovie() {
                     document.getElementById("director").innerHTML = `Director : ${data.crew[i].name}`
                 }
                 if (data.crew[i].job == "Screenplay") {
-                    document.getElementById("writer").innerHTML = `Writer : ${data.crew[i].name}`
+                    document.getElementById("writer").classList.add("list-group-item");
+                    document.getElementById("writer").innerHTML = `Writer : ${data.crew[i].name}`;
                 }
             }
 
@@ -222,7 +228,11 @@ function getMovie() {
                     actorCharacter = document.createElement("p");
 
                 actor.classList.add("list-inline-item");
-                actorImg.setAttribute("src", `https://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`);
+                if (data.cast[i].profile_path == null) {
+                    actorImg.setAttribute("src", "assets/images/noactorimg.jpg");
+                } else {
+                    actorImg.setAttribute("src", `https://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`);
+                }
                 actorImg.classList.add("img-fluid");
                 actorPage.appendChild(actorImg);
                 actorPage.href = `https://www.themoviedb.org/person/${data.cast[i].id}`;
