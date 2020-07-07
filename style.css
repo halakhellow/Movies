@@ -225,6 +225,9 @@ footer p span {
 }
 
 /* MOVIE DETAILS PAGE CODE */
+#movie {
+  margin-top: 2rem;
+}
 
 #title {
   color: #dc2738;
