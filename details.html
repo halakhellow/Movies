@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Details</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c339c56859.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="movie">
+            <div class="row">
+                <div class="col-4">
+                    <img id="poster" class="img-fluid img-thumbnail">
+                </div>
+                <div class="col-8">
+                    <h1 id="title"></h1> <br>
+                    <ul class="list-group">
+                        <li id="genre" class="list-group-item"></li>
+                        <li id="date" class="list-group-item"></li>
+                        <li id="rate" class="list-group-item"></li>
+                        <li id="director" class="list-group-item"></li>
+                        <li id="writer" class="list-group-item"></li>
+                    </ul>
+                </div>
+            </div> <br>
+            <div class="row">
+                <h3>About :</h3>
+                <p id="overview"></p>
+                <h3>Main Actors :</h3>
+                <ul id="actors" class="list-inline"></ul>
+                <a id="tmdb-url" target="_blank" class="btn btn-danger">View TMDB Page</a>
+                <a href="index.html" class="btn btn-default">Go Back To Home Page</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+        getMovie();
+    </script>
+</body>
+
+</html>
