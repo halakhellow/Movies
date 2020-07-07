@@ -205,7 +205,8 @@ nav form #popular-movies-btn {
   min-height: 100vh;
 }
 
-#content-wrap {
+#content-wrap,
+#page-container .container {
   padding-bottom: 7rem;
 }
 
