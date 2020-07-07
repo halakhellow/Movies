@@ -182,23 +182,21 @@ function getMovie() {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
-
             document.getElementById("poster").setAttribute("src", `https://image.tmdb.org/t/p/original/${data.poster_path}`);
             document.getElementById("title").innerHTML = data.title;
-            document.getElementById("date").innerHTML = `Released : ${data.release_date}`;
-            document.getElementById("runtime").innerHTML = `Runtime : ${data.runtime} Minutes`;
+            document.getElementById("date").innerHTML = `<strong>Released : </strong> ${data.release_date}`;
+            document.getElementById("runtime").innerHTML = `<strong>Runtime : </strong> ${data.runtime} Minutes`;
             (data.overview == "") ? document.getElementById("overview").innerHTML = " Overview Not Available ": document.getElementById("overview").innerHTML = data.overview;
             document.getElementById("tmdb-url").href = `https://www.themoviedb.org/movie/${movieId}`;
 
             let starRate = stars(data.vote_average);
-            document.getElementById("rate").innerHTML = `Rating : ${starRate}`;
+            document.getElementById("rate").innerHTML = `<strong>Rating : </strong> ${starRate}`;
 
             let genre = "";
             for (let i = 0; i < data.genres.length; i++) {
                 (i == data.genres.length - 1) ? genre += ` ${data.genres[i].name} `: genre += ` ${data.genres[i].name} , `;
             }
-            document.getElementById("genre").innerHTML = `Genre : ${genre}  `;
+            document.getElementById("genre").innerHTML = `<strong>Genre : </strong> ${genre}  `;
 
 
         });
@@ -210,11 +208,11 @@ function getMovie() {
         .then((data) => {
             for (let i = 0; i < data.crew.length; i++) {
                 if (data.crew[i].job == "Director") {
-                    document.getElementById("director").innerHTML = `Director : ${data.crew[i].name}`
+                    document.getElementById("director").innerHTML = `<strong>Director : </strong> ${data.crew[i].name}`
                 }
                 if (data.crew[i].job == "Screenplay") {
                     document.getElementById("writer").classList.add("list-group-item");
-                    document.getElementById("writer").innerHTML = `Writer : ${data.crew[i].name}`;
+                    document.getElementById("writer").innerHTML = `<strong>Writer : </strong> ${data.crew[i].name}`;
                 }
             }
 
