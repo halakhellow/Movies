@@ -148,7 +148,32 @@ async function getUpcoming() {
 function movieDetails(id) {
     sessionStorage.setItem("movieId", id);
     window.location = "details.html";
-    return false;
+}
+
+function stars(rating) {
+
+    let star = "",
+        count = 0,
+        fullStars = Math.floor(rating / 2),
+        halfStar = rating % 2;
+
+    for (let i = 0; i < fullStars; i++) {
+        star += "<span class='fa fa-star checked'></span>";
+        count++;
+    }
+
+    if (halfStar) {
+        star += "<span class='fa fa-star-half-alt checked'></span>";
+        count++;
+    }
+
+    let emptyStars = 5 - count;
+
+    for (let i = 0; i < emptyStars; i++) {
+        star += "<span class='far fa-star'></span>";
+    }
+
+    return star;
 }
 
 function getMovie() {
@@ -157,6 +182,7 @@ function getMovie() {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
         .then((res) => res.json())
         .then((data) => {
+            console.log(data);
 
             document.getElementById("poster").setAttribute("src", `https://image.tmdb.org/t/p/original/${data.poster_path}`);
             document.getElementById("title").innerHTML = data.title;
@@ -166,6 +192,10 @@ function getMovie() {
             (data.overview == "") ? document.getElementById("overview").innerHTML = "Overview Not Available": document.getElementById("overview").innerHTML = data.overview;
             document.getElementById("tmdb-url").href = `https://www.themoviedb.org/movie/${movieId}`;
 
+            let starRate = stars(data.vote_average);
+            document.getElementById("rate").innerHTML = `Rating : ${starRate}`;
+
+
         });
 
 
@@ -173,7 +203,6 @@ function getMovie() {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
             for (let i = 0; i < data.crew.length; i++) {
                 if (data.crew[i].job == "Director") {
                     document.getElementById("director").innerHTML = `Director : ${data.crew[i].name}`
