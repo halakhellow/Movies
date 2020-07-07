@@ -16,6 +16,10 @@ nav {
   color: ghostwhite;
 }
 
+nav ul li {
+  margin-right: 1rem;
+}
+
 nav ul li .nav-link {
   color: ghostwhite;
   font-size: 1.4rem;
@@ -154,30 +158,30 @@ h1 {
   color: #dc3438;
 }
 
-#movie-details {
+#movies {
   display: flex;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
 }
 
-#movie-details span {
+#movies span {
   display: block;
   font-size: 3em;
 }
 
-#movie-details .card {
+#movies .card {
   float: left;
   height: auto;
   width: 15rem;
   margin: 3rem 0 0 3rem;
 }
 
-#movie-details .card a img {
+#movies .card a img {
   height: 19em;
   border-bottom: 1px solid black;
 }
 
-#movie-details .card:hover {
+#movies .card:hover {
   cursor: pointer;
   transform: scale(1.1);
   transition: 1s;
@@ -185,12 +189,12 @@ h1 {
 }
 
 
-#movie-details .card-body {
+#movies .card-body {
   text-align: center;
   font-size: 17px;
 }
 
-#movie-details .card-body h4 {
+#movies .card-body h4 {
   font-size: 23px;
   font-weight: bold;
   color: #dc2738;
