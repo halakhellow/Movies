@@ -226,6 +226,23 @@ footer p span {
 
 /* MOVIE DETAILS PAGE CODE */
 
+#title {
+  color: #dc2738;
+}
+
+.list-group li {
+  background-color: ghostwhite;
+}
+
+.list-group li strong {
+  color: #004c74;
+  font-size: 18px;
+}
+
+#movie h3 {
+  color: #004c74;
+}
+
 #actors li {
   width: 12%;
   margin-right: 17px;
