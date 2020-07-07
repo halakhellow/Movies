@@ -226,14 +226,14 @@ footer p span {
 /* MOVIE DETAILS PAGE CODE */
 
 #actors li {
-  width: 12.5%;
+  width: 12%;
   margin-right: 17px;
   padding: 5px 0;
   vertical-align: top;
 }
 
 #actors li a img {
-  width: 8rem;
+  width: 7rem;
   height: 8rem;
   border-radius: 50%;
   margin-bottom: 0.3em;
@@ -247,5 +247,5 @@ footer p span {
 #actors li p {
   text-align: center;
   color: #636363;
-  font-size: 12px;
+  font-size: 13px;
 }
