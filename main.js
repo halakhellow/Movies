@@ -212,6 +212,9 @@ function getMovie() {
         .then((res) => res.json())
         .then((data) => {
             document.getElementById("poster").setAttribute("src", `https://image.tmdb.org/t/p/original/${data.poster_path}`);
+            if (data.poster_path == null) {
+                document.getElementById("poster").setAttribute("src", "assets/images/noimage.png");
+            }
             document.getElementById("title").innerHTML = data.title;
             document.getElementById("date").innerHTML = `<strong>Released : </strong> ${data.release_date}`;
             document.getElementById("runtime").innerHTML = `<strong>Runtime : </strong> ${data.runtime} Minutes`;
