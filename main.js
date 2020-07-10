@@ -4,6 +4,8 @@ let searchInput = document.getElementById("search-input"),
     nowPlayingMovies = document.getElementById("nowplaying-btn"),
     popularMovies = document.getElementById("popular-btn"),
     upcomingMovies = document.getElementById("upcoming-btn"),
+    topRatedMovies = document.getElementById("top-rated"),
+    latestMovie = document.getElementById("latest"),
     loader = document.getElementById("loader"),
     alertMsg = document.getElementById("alert-msg"),
     moviesList = document.getElementById("movies");
@@ -11,7 +13,8 @@ let searchInput = document.getElementById("search-input"),
 searchInput.addEventListener("keydown", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
-        loader.style.display = "none";
+        loader.style.display = "block";
+        alertMsg.style.display = "none";
         getMoviesList();
     }
 });
@@ -19,6 +22,7 @@ searchInput.addEventListener("keydown", function (event) {
 searchButton.addEventListener("click", function (event) {
     event.preventDefault();
     loader.style.display = "block";
+    alertMsg.style.display = "none";
     getMoviesList();
 });
 
@@ -38,10 +42,20 @@ popularMovies.addEventListener("click", function (event) {
     event.preventDefault();
     getPopular();
 });
+topRatedMovies.addEventListener("click", function (event) {
+    event.preventDefault();
+    loader.style.display = "block";
+    getTopRated();
+});
+latestMovie.addEventListener("click", function (event) {
+    event.preventDefault();
+    loader.style.display = "block";
+    getLatest();
+});
 
 window.onload = function () {
     nowPlayingMovies.click();
-}
+};
 
 function makeCard(result) {
     let movieCard = document.createElement("div"),
@@ -54,7 +68,10 @@ function makeCard(result) {
         moviePageLink = document.createElement("a");
 
     movieCard.classList.add("card", "border-dark");
-    moviePoster.setAttribute("src", `https://image.tmdb.org/t/p/w500/${result.poster_path}`);
+    moviePoster.setAttribute(
+        "src",
+        `https://image.tmdb.org/t/p/w500/${result.poster_path}`
+    );
     if (result.poster_path == null) {
         moviePoster.setAttribute("src", "assets/images/noimage.png");
     }
@@ -65,7 +82,7 @@ function makeCard(result) {
     yearTag.classList.add("card-text");
 
     if (result.release_date == "") {
-        yearTag.innerHTML = "Year Released : unKnown "
+        yearTag.innerHTML = "Year Released : unKnown ";
     }
 
     moviePageLink.appendChild(moviePoster);
@@ -80,68 +97,98 @@ function makeCard(result) {
     moviePageLink.onclick = function (e) {
         e.preventDefault();
         movieDetails(result.id);
-    }
-    document.getElementById("home-title").style.display = "none";
+    };
     loader.style.display = "none";
-
-};
+}
 
 function clearInfos() {
-    loader.style.display = "none";
     moviesList.innerHTML = "";
-    alertMsg.style.display = "block";
-    document.getElementById("home-title").style.display = "none";
+    alertMsg.style.display = "none";
+    document.getElementById("movies-section").innerHTML = "";
+}
 
+function movieSectionName(name) {
+    let headingTag = document.createElement("h1"),
+        headingText = document.createTextNode(`${name}`);
+    headingTag.appendChild(headingText);
+    document.getElementById("movies-section").appendChild(headingTag);
 }
 
 async function getMoviesList() {
     if (searchInput.value === "") {
-        clearInfos();
+        loader.style.display = "none";
+        alertMsg.style.display = "block";
         alertMsg.innerHTML = "Please Enter a Movie Title To Search";
     } else {
-        moviesList.innerHTML = "";
         let res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${searchInput.value}`),
             data = await res.json();
         if (data.results.length == 0) {
-            clearInfos();
-            alertMsg.innerHTML = "No Results, Please Try Again";
+            loader.style.display = "none";
+            alertMsg.style.display = "block";
+            alertMsg.innerHTML = `No Results For " ${searchInput.value} " , Please Try Again`;
         } else {
-            alertMsg.style.display = "none";
+            clearInfos();
             data.results.map((result) => {
                 makeCard(result);
-            })
+            });
+            movieSectionName(`Results for " ${searchInput.value} "`);
         }
     }
-};
+}
 
 async function getPopular() {
-    moviesList.innerHTML = "";
-    alertMsg.style.display = "none";
-    let res = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
+    clearInfos();
+    let res = await fetch(
+            "https://api.themoviedb.org/3/movie/popular?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"
+        ),
         data = await res.json();
     data.results.map((result) => {
         makeCard(result);
-    })
-};
+    });
+    movieSectionName("Popular Movies");
+}
 async function getnowPlaying() {
-    moviesList.innerHTML = "";
-    alertMsg.style.display = "none";
-    let res = await fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
+    clearInfos();
+    let res = await fetch(
+            "https://api.themoviedb.org/3/movie/now_playing?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"
+        ),
         data = await res.json();
     data.results.map((result) => {
         makeCard(result);
-        document.getElementById("home-title").style.display = "block";
-    })
-};
+    });
+    movieSectionName("Now Playing Movies");
+}
 async function getUpcoming() {
-    moviesList.innerHTML = "";
-    alertMsg.style.display = "none";
-    let res = await fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
+    clearInfos();
+    let res = await fetch(
+            "https://api.themoviedb.org/3/movie/upcoming?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"
+        ),
         data = await res.json();
     data.results.map((result) => {
         makeCard(result);
-    })
-};
+    });
+    movieSectionName("Upcoming Movies");
+}
+async function getTopRated() {
+    clearInfos();
+    let res = await fetch(
+            "https://api.themoviedb.org/3/movie/top_rated?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"
+        ),
+        data = await res.json();
+    data.results.map((result) => {
+        makeCard(result);
+    });
+    movieSectionName("Top Rated Movies");
+}
+async function getLatest() {
+    clearInfos();
+    let res = await fetch(
+            "https://api.themoviedb.org/3/movie/latest?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"
+        ),
+        data = await res.json();
+    makeCard(data);
+    movieSectionName("Latest Movie");
+}
 
 // MOVIE DETAILS PAGE CODE
 
@@ -151,7 +198,6 @@ function movieDetails(id) {
 }
 
 function stars(rating) {
-
     let star = "",
         count = 0,
         fullStars = Math.floor(rating / 2),
@@ -179,72 +225,117 @@ function stars(rating) {
 function getMovie() {
     let movieId = localStorage.getItem("movieId");
 
-    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
+    fetch(
+            `https://api.themoviedb.org/3/movie/${movieId}?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`
+        )
         .then((res) => res.json())
         .then((data) => {
-            document.getElementById("poster").setAttribute("src", `https://image.tmdb.org/t/p/original/${data.poster_path}`);
+            document
+                .getElementById("poster")
+                .setAttribute(
+                    "src",
+                    `https://image.tmdb.org/t/p/original/${data.poster_path}`
+                );
+            if (data.poster_path == null) {
+                document
+                    .getElementById("poster")
+                    .setAttribute("src", "assets/images/noimage.png");
+            }
             document.getElementById("title").innerHTML = data.title;
-            document.getElementById("date").innerHTML = `<strong>Released : </strong> ${data.release_date}`;
-            document.getElementById("runtime").innerHTML = `<strong>Runtime : </strong> ${data.runtime} Minutes`;
-            (data.overview == "") ? document.getElementById("overview").innerHTML = " Overview Not Available ": document.getElementById("overview").innerHTML = data.overview;
-            document.getElementById("tmdb-url").href = `https://www.themoviedb.org/movie/${movieId}`;
+            document.getElementById(
+                "date"
+            ).innerHTML = `<strong>Released : </strong> ${data.release_date}`;
+            if (data.release_date == "") {
+                document.getElementById("date").innerHTML =
+                    "<strong>Released : </strong> Unknown";
+            }
+            document.getElementById(
+                "runtime"
+            ).innerHTML = `<strong>Runtime : </strong> ${data.runtime} Minutes`;
+            if (data.runtime == null) {
+                document.getElementById("runtime").innerHTML =
+                    "<strong>Runtime : </strong> Unknown";
+            }
+            data.overview == "" ?
+                (document.getElementById("overview").innerHTML =
+                    " Overview Not Available ") :
+                (document.getElementById("overview").innerHTML = data.overview);
+            document.getElementById(
+                "tmdb-url"
+            ).href = `https://www.themoviedb.org/movie/${movieId}`;
 
             let starRate = stars(data.vote_average);
-            document.getElementById("rate").innerHTML = `<strong>Rating : </strong> ${starRate}`;
+            document.getElementById(
+                "rate"
+            ).innerHTML = `<strong>Rating : </strong> ${starRate}`;
 
             let genre = "";
             for (let i = 0; i < data.genres.length; i++) {
-                (i == data.genres.length - 1) ? genre += ` ${data.genres[i].name} `: genre += ` ${data.genres[i].name} , `;
+                i == data.genres.length - 1 ?
+                    (genre += ` ${data.genres[i].name} `) :
+                    (genre += ` ${data.genres[i].name} , `);
             }
-            document.getElementById("genre").innerHTML = `<strong>Genre : </strong> ${genre}  `;
-
-
+            document.getElementById(
+                "genre"
+            ).innerHTML = `<strong>Genre : </strong> ${genre}  `;
+            if (data.genres.length == 0) {
+                document.getElementById("genre").innerHTML =
+                    "<strong>Genre : </strong> Unknown";
+            }
         });
 
-
-
-    fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
+    fetch(
+            `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`
+        )
         .then((res) => res.json())
         .then((data) => {
             for (let i = 0; i < data.crew.length; i++) {
                 if (data.crew[i].job == "Director") {
-                    document.getElementById("director").innerHTML = `<strong>Director : </strong> ${data.crew[i].name}`
+                    document.getElementById("director").classList.add("list-group-item");
+                    document.getElementById(
+                        "director"
+                    ).innerHTML = `<strong>Director : </strong> ${data.crew[i].name}`;
                 }
-                if (data.crew[i].job == "Screenplay") {
+                if (data.crew[i].job == "Screenplay" || data.crew[i].job == "Writer") {
                     document.getElementById("writer").classList.add("list-group-item");
-                    document.getElementById("writer").innerHTML = `<strong>Writer : </strong> ${data.crew[i].name}`;
+                    document.getElementById(
+                        "writer"
+                    ).innerHTML = `<strong>Writer : </strong> ${data.crew[i].name}`;
                 }
             }
-
 
             let actorsList = document.getElementById("actors");
-            for (let i = 0; i < 7; i++) {
-                let actor = document.createElement("li"),
-                    actorPage = document.createElement("a"),
-                    actorImg = document.createElement("img"),
-                    actorName = document.createElement("h6"),
-                    actorCharacter = document.createElement("p");
+            if (data.cast.length === 0) {
+                actorsList.innerHTML += "No Information";
+            } else {
+                for (let i = 0; i < 7; i++) {
+                    let actor = document.createElement("li"),
+                        actorPage = document.createElement("a"),
+                        actorImg = document.createElement("img"),
+                        actorName = document.createElement("h6"),
+                        actorCharacter = document.createElement("p");
 
-                actor.classList.add("list-inline-item");
-                if (data.cast[i].profile_path == null) {
-                    actorImg.setAttribute("src", "assets/images/noactorimg.jpg");
-                } else {
-                    actorImg.setAttribute("src", `https://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`);
+                    actor.classList.add("list-inline-item");
+                    if (data.cast[i].profile_path == null) {
+                        actorImg.setAttribute("src", "assets/images/noactorimg.jpg");
+                    } else {
+                        actorImg.setAttribute(
+                            "src",
+                            `https://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`
+                        );
+                    }
+                    actorImg.classList.add("img-fluid");
+                    actorPage.appendChild(actorImg);
+                    actorPage.href = `https://www.themoviedb.org/person/${data.cast[i].id}`;
+                    actorPage.setAttribute("target", "_blank");
+                    actorName.innerHTML = data.cast[i].name;
+                    actorCharacter.innerHTML = `as ${data.cast[i].character}`;
+
+                    actor.appendChild(actorPage);
+                    actor.appendChild(actorName);
+                    actor.appendChild(actorCharacter);
+                    actorsList.appendChild(actor);
                 }
-                actorImg.classList.add("img-fluid");
-                actorPage.appendChild(actorImg);
-                actorPage.href = `https://www.themoviedb.org/person/${data.cast[i].id}`;
-                actorPage.setAttribute("target", "_blank");
-                actorName.innerHTML = data.cast[i].name;
-                actorCharacter.innerHTML = `as ${data.cast[i].character}`;
-
-                actor.appendChild(actorPage);
-                actor.appendChild(actorName);
-                actor.appendChild(actorCharacter);
-                actorsList.appendChild(actor);
-
             }
-
-        })
-
-};
+        });
+}
