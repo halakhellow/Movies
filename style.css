@@ -162,6 +162,7 @@ nav form #popular-movies-btn {
   display: flex;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
+  justify-content: center;
 }
 
 #movies span {
@@ -173,7 +174,7 @@ nav form #popular-movies-btn {
   float: left;
   height: auto;
   width: 15rem;
-  margin: 3rem 0 0 3rem;
+  margin: 3rem 2.5rem 0 0;
 }
 
 #movies .card a img {
