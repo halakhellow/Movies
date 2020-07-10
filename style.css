@@ -151,8 +151,7 @@ nav form #popular-movies-btn {
   font-size: 1.7em;
 }
 
-#home-title {
-  display: none;
+#movies-section h1 {
   text-align: center;
   margin-top: 1em;
   color: #dc3438;
