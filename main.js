@@ -217,6 +217,9 @@ function getMovie() {
             }
             document.getElementById("title").innerHTML = data.title;
             document.getElementById("date").innerHTML = `<strong>Released : </strong> ${data.release_date}`;
+            if (data.release_date == "") {
+                document.getElementById("date").innerHTML = "<strong>Released : </strong> Unknown";
+            }
             document.getElementById("runtime").innerHTML = `<strong>Runtime : </strong> ${data.runtime} Minutes`;
             (data.overview == "") ? document.getElementById("overview").innerHTML = " Overview Not Available ": document.getElementById("overview").innerHTML = data.overview;
             document.getElementById("tmdb-url").href = `https://www.themoviedb.org/movie/${movieId}`;
@@ -229,15 +232,16 @@ function getMovie() {
                 (i == data.genres.length - 1) ? genre += ` ${data.genres[i].name} `: genre += ` ${data.genres[i].name} , `;
             }
             document.getElementById("genre").innerHTML = `<strong>Genre : </strong> ${genre}  `;
-
-
+            if (data.genres.length == 0) {
+                document.getElementById("genre").innerHTML = "<strong>Genre : </strong> Unknown";
+            }
         });
-
 
 
     fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
         .then((res) => res.json())
         .then((data) => {
+
             for (let i = 0; i < data.crew.length; i++) {
                 if (data.crew[i].job == "Director") {
                     document.getElementById("writer").classList.add("list-group-item");
@@ -249,35 +253,35 @@ function getMovie() {
                 }
             }
 
-
             let actorsList = document.getElementById("actors");
-            for (let i = 0; i < 7; i++) {
-                let actor = document.createElement("li"),
-                    actorPage = document.createElement("a"),
-                    actorImg = document.createElement("img"),
-                    actorName = document.createElement("h6"),
-                    actorCharacter = document.createElement("p");
+            if (data.cast.length === 0) {
+                actorsList.innerHTML += "No Information";
+            } else {
+                for (let i = 0; i < 7; i++) {
+                    let actor = document.createElement("li"),
+                        actorPage = document.createElement("a"),
+                        actorImg = document.createElement("img"),
+                        actorName = document.createElement("h6"),
+                        actorCharacter = document.createElement("p");
 
-                actor.classList.add("list-inline-item");
-                if (data.cast[i].profile_path == null) {
-                    actorImg.setAttribute("src", "assets/images/noactorimg.jpg");
-                } else {
-                    actorImg.setAttribute("src", `https://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`);
+                    actor.classList.add("list-inline-item");
+                    if (data.cast[i].profile_path == null) {
+                        actorImg.setAttribute("src", "assets/images/noactorimg.jpg");
+                    } else {
+                        actorImg.setAttribute("src", `https://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`);
+                    }
+                    actorImg.classList.add("img-fluid");
+                    actorPage.appendChild(actorImg);
+                    actorPage.href = `https://www.themoviedb.org/person/${data.cast[i].id}`;
+                    actorPage.setAttribute("target", "_blank");
+                    actorName.innerHTML = data.cast[i].name;
+                    actorCharacter.innerHTML = `as ${data.cast[i].character}`;
+
+                    actor.appendChild(actorPage);
+                    actor.appendChild(actorName);
+                    actor.appendChild(actorCharacter);
+                    actorsList.appendChild(actor);
                 }
-                actorImg.classList.add("img-fluid");
-                actorPage.appendChild(actorImg);
-                actorPage.href = `https://www.themoviedb.org/person/${data.cast[i].id}`;
-                actorPage.setAttribute("target", "_blank");
-                actorName.innerHTML = data.cast[i].name;
-                actorCharacter.innerHTML = `as ${data.cast[i].character}`;
-
-                actor.appendChild(actorPage);
-                actor.appendChild(actorName);
-                actor.appendChild(actorCharacter);
-                actorsList.appendChild(actor);
-
             }
-
         })
-
 };
