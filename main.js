@@ -240,6 +240,7 @@ function getMovie() {
         .then((data) => {
             for (let i = 0; i < data.crew.length; i++) {
                 if (data.crew[i].job == "Director") {
+                    document.getElementById("writer").classList.add("list-group-item");
                     document.getElementById("director").innerHTML = `<strong>Director : </strong> ${data.crew[i].name}`
                 }
                 if (data.crew[i].job == "Screenplay") {
