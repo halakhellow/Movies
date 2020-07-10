@@ -4,6 +4,8 @@ let searchInput = document.getElementById("search-input"),
     nowPlayingMovies = document.getElementById("nowplaying-btn"),
     popularMovies = document.getElementById("popular-btn"),
     upcomingMovies = document.getElementById("upcoming-btn"),
+    topRatedMovies = document.getElementById("top-rated"),
+    latestMovie = document.getElementById("latest"),
     loader = document.getElementById("loader"),
     alertMsg = document.getElementById("alert-msg"),
     moviesList = document.getElementById("movies");
@@ -30,13 +32,27 @@ nowPlayingMovies.addEventListener("click", function (event) {
 
 upcomingMovies.addEventListener("click", function (event) {
     event.preventDefault();
+    document.getElementById("home-title").style.display = "none";
     loader.style.display = "block";
     getUpcoming();
 });
 
 popularMovies.addEventListener("click", function (event) {
     event.preventDefault();
+    document.getElementById("home-title").style.display = "none";
     getPopular();
+});
+topRatedMovies.addEventListener("click", function (event) {
+    event.preventDefault();
+    document.getElementById("home-title").style.display = "none";
+    loader.style.display = "block";
+    getTopRated();
+});
+latestMovie.addEventListener("click", function (event) {
+    event.preventDefault();
+    document.getElementById("home-title").style.display = "none";
+    loader.style.display = "block";
+    getLatest();
 });
 
 window.onload = function () {
@@ -81,9 +97,7 @@ function makeCard(result) {
         e.preventDefault();
         movieDetails(result.id);
     }
-    document.getElementById("home-title").style.display = "none";
     loader.style.display = "none";
-
 };
 
 function clearInfos() {
@@ -91,7 +105,6 @@ function clearInfos() {
     moviesList.innerHTML = "";
     alertMsg.style.display = "block";
     document.getElementById("home-title").style.display = "none";
-
 }
 
 async function getMoviesList() {
@@ -141,6 +154,22 @@ async function getUpcoming() {
     data.results.map((result) => {
         makeCard(result);
     })
+};
+async function getTopRated() {
+    moviesList.innerHTML = "";
+    alertMsg.style.display = "none";
+    let res = await fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
+        data = await res.json();
+    data.results.map((result) => {
+        makeCard(result);
+    })
+};
+async function getLatest() {
+    moviesList.innerHTML = "";
+    alertMsg.style.display = "none";
+    let res = await fetch("https://api.themoviedb.org/3/movie/latest?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
+        data = await res.json();
+    makeCard(data);
 };
 
 // MOVIE DETAILS PAGE CODE
