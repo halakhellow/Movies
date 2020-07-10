@@ -13,7 +13,7 @@ let searchInput = document.getElementById("search-input"),
 searchInput.addEventListener("keydown", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
-        loader.style.display = "none";
+        loader.style.display = "block";
         getMoviesList();
     }
 });
@@ -110,16 +110,18 @@ function movieSectionName(name) {
 }
 
 async function getMoviesList() {
+    clearInfos();
     if (searchInput.value === "") {
         clearInfos();
+        loader.style.display = "none";
         alertMsg.style.display = "block";
         alertMsg.innerHTML = "Please Enter a Movie Title To Search";
     } else {
-        moviesList.innerHTML = "";
         let res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${searchInput.value}`),
             data = await res.json();
         if (data.results.length == 0) {
             clearInfos();
+            loader.style.display = "none";
             alertMsg.style.display = "block";
             alertMsg.innerHTML = "No Results, Please Try Again";
         } else {
