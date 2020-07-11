@@ -188,6 +188,10 @@ nav form:hover #search-btn {
   font-size: 1.7em;
 }
 
+#alert-msg button {
+  font-size: 2rem;
+}
+
 #movies-section h1 {
   text-align: center;
   margin-top: 1em;
