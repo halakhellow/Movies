@@ -98,6 +98,7 @@ nav form:hover #search-btn {
 }
 
 @keyframes load5 {
+
   0%,
   100% {
     box-shadow: 0em -2.6em 0em 0em #dc3438,
@@ -187,6 +188,10 @@ nav form:hover #search-btn {
   font-size: 1.7em;
 }
 
+#alert-msg button {
+  font-size: 2rem;
+}
+
 #movies-section h1 {
   text-align: center;
   margin-top: 1em;
@@ -252,6 +257,10 @@ footer {
   height: 2.5rem;
   background-color: #1c1e21;
   color: ghostwhite;
+}
+
+footer p {
+  margin-bottom: 0;
 }
 
 footer p span {

@@ -105,6 +105,7 @@ function clearInfos() {
     moviesList.innerHTML = "";
     alertMsg.style.display = "none";
     document.getElementById("movies-section").innerHTML = "";
+    document.getElementById("movie").innerHTML = "";
 }
 
 function movieSectionName(name) {
@@ -114,18 +115,20 @@ function movieSectionName(name) {
     document.getElementById("movies-section").appendChild(headingTag);
 }
 
+function dismiss() {
+    document.getElementById("dismiss").parentNode.style.display = "none";
+};
+
 async function getMoviesList() {
     if (searchInput.value === "") {
         loader.style.display = "none";
         alertMsg.style.display = "block";
-        alertMsg.innerHTML = "Please Enter a Movie Title To Search";
     } else {
         let res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${searchInput.value}`),
             data = await res.json();
         if (data.results.length == 0) {
             loader.style.display = "none";
             alertMsg.style.display = "block";
-            alertMsg.innerHTML = `No Results For " ${searchInput.value} " , Please Try Again`;
         } else {
             clearInfos();
             data.results.map((result) => {
