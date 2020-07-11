@@ -13,6 +13,34 @@
 
 <body>
     <div id="page-container">
+        <nav class="navbar navbar-expand-sm justify-content-between p-3">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button id="nowplaying-btn" class="nav-link" autofocus>Home</button>
+                </li>
+                <li class="nav-item">
+                    <button id="popular-btn" class="nav-link">Popular Movies</button>
+                </li>
+                <li class="nav-item">
+                    <button id="upcoming-btn" class="nav-link">Upcoming Movies</button>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        See More
+                    </a>
+                    <div class="dropdown-menu">
+                        <a id="top-rated" class="dropdown-item" href="#">Top Rated Movies</a>
+                        <a id="latest" class="dropdown-item" href="#">Latest Movie</a>
+                    </div>
+                </li>
+            </ul>
+            <form>
+                <input id="search-input" placeholder="Search . . ." autofocus>
+                <button id="search-btn">
+                    <span class="fa fa-search"></span>
+                </button>
+            </form>
+        </nav>
         <div class="container">
             <div id="movie">
                 <div class="row">
@@ -36,7 +64,6 @@
                 <h3>Main Actors :</h3>
                 <ul id="actors" class="list-inline"></ul>
                 <a id="tmdb-url" target="_blank" class="btn btn-danger ">View TMDB Page</a>
-                <a href="index.html" class="btn btn-default">Go Back To Home Page</a>
             </div>
         </div>
         <footer class="text-center">
