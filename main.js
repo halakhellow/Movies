@@ -52,10 +52,10 @@ latestMovie.addEventListener("click", function (event) {
     loader.style.display = "block";
     getLatest();
 });
-// make it when first load to first page only
-// window.onload = function () {
-//     nowPlayingMovies.click();
-// };
+
+window.onload = function () {
+    nowPlayingMovies.click();
+};
 
 function makeCard(result) {
     let movieCard = document.createElement("div"),
