@@ -226,7 +226,7 @@ nav form:hover #search-btn {
   cursor: pointer;
   transform: scale(1.1);
   transition: 1s;
-  box-shadow: 5px 5px 15px #dc3545, -5px -5px 15px #dc3545;
+  box-shadow: 3px 3px 10px #dc3545, -3px -3px 10px #dc3545;
 }
 
 #movies .card-body {
