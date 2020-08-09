@@ -11,7 +11,7 @@ body {
   font-family: "Titillium Web", cursive;
 }
 
-nav {
+.navbar {
   background-color: #1c1e21;
   color: ghostwhite;
 }
@@ -290,27 +290,51 @@ footer p span {
   color: #004c74;
 }
 
-.actors li {
-  width: 12%;
-  margin-right: 17px;
-  padding: 5px 0;
-  vertical-align: top;
+.actors {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  background-color: ghostwhite;
 }
 
-.actors li a img {
-  width: 7rem;
-  height: 8rem;
-  border-radius: 50%;
-  margin-bottom: 0.3em;
+.actors span:first-of-type {
+  margin-left: 20px;
 }
 
-.actors li h6 {
+.actors span {
+  flex: 0 0 auto;
+  width: 8rem;
+  margin-right: 20px;
+  padding-top: 10px;
+}
+
+.actors span a img {
+  width: 8rem;
+  height: 10rem;
+  margin-bottom: 0.5em;
+}
+
+.actors span h6 {
   text-align: center;
   font-size: 18px;
 }
 
-.actors li p {
+.actors span h6:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.5s;
+  color: #004c74;
+}
+
+.actors span p {
+  margin-bottom: 0;
   text-align: center;
   color: #636363;
   font-size: 13px;
+}
+
+.actors span a img:hover {
+  transform: scale(0.87);
+  transition: 1s;
+  box-shadow: 3px 3px 10px #004c74, -3px -3px 10px #004c74;
 }
