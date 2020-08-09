@@ -335,6 +335,7 @@ function getMovie() {
           actorPage.setAttribute("target", "_blank");
           actorName.innerHTML = data.cast[i].name;
           actorCharacter.innerHTML = `as ${data.cast[i].character}`;
+          if (data.cast[i].character == "") actorCharacter.innerHTML = `UnKnown Character`;
 
           actor.appendChild(actorPage);
           actor.appendChild(actorName);
