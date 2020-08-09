@@ -104,7 +104,7 @@ function makeCard(result) {
 function clearInfos() {
   moviesList.innerHTML = "";
   alertMsg.style.display = "none";
-  document.getElementById("movies-section").innerHTML = "";
+  document.getElementById("movies-section-label").innerHTML = "";
   document.getElementById("movie").innerHTML = "";
 }
 
@@ -112,7 +112,7 @@ function movieSectionName(name) {
   let headingTag = document.createElement("h1"),
     headingText = document.createTextNode(`${name}`);
   headingTag.appendChild(headingText);
-  document.getElementById("movies-section").appendChild(headingTag);
+  document.getElementById("movies-section-label").appendChild(headingTag);
 }
 
 function dismiss() {
