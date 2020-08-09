@@ -43,7 +43,7 @@ nav form {
   border-radius: 40px;
 }
 
-nav form #search-input {
+nav form .search-input {
   border: none;
   background: none;
   outline: none;
@@ -55,7 +55,7 @@ nav form #search-input {
   width: 0px;
 }
 
-nav form #search-btn {
+nav form .search-btn {
   color: white;
   float: right;
   width: 2.6rem;
@@ -76,19 +76,19 @@ nav form:hover {
   border: 3px solid #dc3438;
 }
 
-nav form:hover #search-input {
+nav form:hover .search-input {
   padding: 0 1em;
   width: 12rem;
   font-size: 20px;
 }
 
-nav form:hover #search-btn {
+nav form:hover .search-btn {
   background: ghostwhite;
   color: #2f3640;
   height: 2.2rem;
 }
 
-#loader {
+.loader {
   display: none;
   margin: 100px auto;
   width: 1em;
@@ -182,71 +182,71 @@ nav form:hover #search-btn {
   }
 }
 
-#alert-msg {
+.alert {
   display: none;
   text-align: center;
   font-size: 1.7em;
 }
 
-#alert-msg button {
+.alert button {
   font-size: 2rem;
 }
 
-#movies-section h1 {
+.movies-section-label h1 {
   text-align: center;
   margin-top: 1em;
   color: #dc3438;
 }
 
-#movies {
+.movies {
   display: flex;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
   justify-content: center;
 }
 
-#movies span {
+.movies span {
   display: block;
   font-size: 3em;
 }
 
-#movies .card {
+.movies .card {
   float: left;
   height: auto;
   width: 15rem;
   margin: 3rem 2.5rem 0 0;
 }
 
-#movies .card a img {
+.movies .card a img {
   height: 19em;
   border-bottom: 1px solid black;
 }
 
-#movies .card:hover {
+.movies .card:hover {
   cursor: pointer;
   transform: scale(1.1);
   transition: 1s;
   box-shadow: 5px 5px 15px #dc3545, -5px -5px 15px #dc3545;
 }
 
-#movies .card-body {
+.movies .card-body {
   text-align: center;
   font-size: 17px;
 }
 
-#movies .card-body h4 {
+.movies .card-body h4 {
   font-size: 23px;
   font-weight: bold;
   color: #dc2738;
 }
 
-#page-container {
+.page-container {
   position: relative;
   min-height: 100vh;
 }
 
-#content-wrap,
-#page-container .container {
+.content-wrap,
+.page-container .container {
   padding-bottom: 7rem;
 }
 
@@ -269,11 +269,11 @@ footer p span {
 }
 
 /* MOVIE DETAILS PAGE CODE */
-#movie {
+.movie {
   margin-top: 2rem;
 }
 
-#title {
+.title {
   color: #dc2738;
 }
 
@@ -286,30 +286,30 @@ footer p span {
   font-size: 18px;
 }
 
-#movie h3 {
+.movie h3 {
   color: #004c74;
 }
 
-#actors li {
+.actors li {
   width: 12%;
   margin-right: 17px;
   padding: 5px 0;
   vertical-align: top;
 }
 
-#actors li a img {
+.actors li a img {
   width: 7rem;
   height: 8rem;
   border-radius: 50%;
   margin-bottom: 0.3em;
 }
 
-#actors li h6 {
+.actors li h6 {
   text-align: center;
   font-size: 18px;
 }
 
-#actors li p {
+.actors li p {
   text-align: center;
   color: #636363;
   font-size: 13px;
