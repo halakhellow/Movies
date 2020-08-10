@@ -10,7 +10,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:active,
 input:-webkit-autofill:focus {
-  box-shadow: 0 0 0 1000px ghostwhite inset !important;
+  box-shadow: 0 0 0 50px ghostwhite inset !important;
 }
 
 body {
