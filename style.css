@@ -6,6 +6,13 @@
   padding: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+  box-shadow: 0 0 0 1000px ghostwhite inset !important;
+}
+
 body {
   background-color: gainsboro;
   font-family: "Titillium Web", cursive;
@@ -46,12 +53,14 @@ nav form {
 nav form .search-input {
   border: none;
   background: none;
+  height: 2.2rem;
+  border-radius: 40px;
   outline: none;
   float: left;
   padding: 0;
   color: black;
   transition: 0.5s;
-  line-height: 40px;
+  line-height: 41px;
   width: 0px;
 }
 
