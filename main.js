@@ -312,6 +312,7 @@ function getMovie() {
       let actorsList = document.getElementById("actors");
       if (data.cast.length === 0) {
         actorsList.innerHTML += "No Information";
+        actorsList.style.backgroundColor = "transparent";
       } else {
         for (let i = 0; i < data.cast.length; i++) {
           let actor = document.createElement("span"),
