@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div id="page-container">
+    <div class="page-container">
         <nav class="navbar navbar-expand-sm justify-content-between p-3">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -35,27 +35,28 @@
                 </li>
             </ul>
             <form>
-                <input id="search-input" placeholder="Search . . ." autofocus>
-                <button id="search-btn">
+                <input id="search-input" class="search-input" placeholder="Search . . .">
+                <button id="search-btn" class="search-btn">
                     <span class="fa fa-search"></span>
                 </button>
             </form>
         </nav>
         <div id="loader"></div>
+        <div id="loader" class="loader"></div>
         <div id="alert-msg" class="alert alert-danger">
             No Results , Please Try Again .
             <button id="dismiss" class="close" onclick="dismiss()">&times;</button>
         </div>
-        <div id="movies-section"></div>
-        <div id="movies"> </div>
+        <div id="movies-section-label" class="movies-section-label"></div>
+        <div id="movies" class="movies"> </div>
         <div class="container">
-            <div id="movie">
+            <div id="movie" class="movie">
                 <div class="row">
                     <div class="col-4">
                         <img id="poster" class="img-fluid img-thumbnail">
                     </div>
                     <div class="col-8">
-                        <h1 id="title"></h1> <br>
+                        <h1 id="title" class="title"></h1> <br>
                         <ul class="list-group list-unstyled">
                             <li id="genre" class="list-group-item"></li>
                             <li id="date" class="list-group-item"></li>
@@ -68,8 +69,9 @@
                 </div> <br>
                 <h3>About :</h3>
                 <p id="overview"></p>
-                <h3>Main Actors :</h3>
-                <ul id="actors" class="list-inline"></ul>
+                <h3>Actors :</h3>
+                <nav id="actors" class="actors"></nav>
+                <br>
                 <a id="tmdb-url" target="_blank" class="btn btn-danger ">View TMDB Page</a>
             </div>
         </div>

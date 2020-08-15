@@ -6,12 +6,19 @@
   padding: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+  box-shadow: 0 0 0 50px ghostwhite inset !important;
+}
+
 body {
   background-color: gainsboro;
   font-family: "Titillium Web", cursive;
 }
 
-nav {
+.navbar {
   background-color: #1c1e21;
   color: ghostwhite;
 }
@@ -43,19 +50,21 @@ nav form {
   border-radius: 40px;
 }
 
-nav form #search-input {
+nav form .search-input {
   border: none;
   background: none;
+  height: 2.2rem;
+  border-radius: 40px;
   outline: none;
   float: left;
   padding: 0;
   color: black;
   transition: 0.5s;
-  line-height: 40px;
+  line-height: 41px;
   width: 0px;
 }
 
-nav form #search-btn {
+nav form .search-btn {
   color: white;
   float: right;
   width: 2.6rem;
@@ -76,19 +85,19 @@ nav form:hover {
   border: 3px solid #dc3438;
 }
 
-nav form:hover #search-input {
+nav form:hover .search-input {
   padding: 0 1em;
   width: 12rem;
   font-size: 20px;
 }
 
-nav form:hover #search-btn {
+nav form:hover .search-btn {
   background: ghostwhite;
   color: #2f3640;
   height: 2.2rem;
 }
 
-#loader {
+.loader {
   display: none;
   margin: 100px auto;
   width: 1em;
@@ -182,71 +191,72 @@ nav form:hover #search-btn {
   }
 }
 
-#alert-msg {
+.alert {
   display: none;
   text-align: center;
   font-size: 1.7em;
 }
 
-#alert-msg button {
+.alert button {
   font-size: 2rem;
 }
 
-#movies-section h1 {
+.movies-section-label h1 {
   text-align: center;
   margin-top: 1em;
   color: #dc3438;
 }
 
-#movies {
+.movies {
   display: flex;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
   justify-content: center;
+  gap: 2.5rem;
 }
 
-#movies span {
+.movies span {
   display: block;
   font-size: 3em;
 }
 
-#movies .card {
+.movies .card {
   float: left;
   height: auto;
   width: 15rem;
-  margin: 3rem 2.5rem 0 0;
+  margin-top: 1.5rem;
 }
 
-#movies .card a img {
+.movies .card a img {
   height: 19em;
   border-bottom: 1px solid black;
 }
 
-#movies .card:hover {
+.movies .card:hover {
   cursor: pointer;
   transform: scale(1.1);
   transition: 1s;
   box-shadow: 3px 3px 10px #dc3545, -3px -3px 10px #dc3545;
 }
 
-#movies .card-body {
+.movies .card-body {
   text-align: center;
   font-size: 17px;
 }
 
-#movies .card-body h4 {
+.movies .card-body h4 {
   font-size: 23px;
   font-weight: bold;
   color: #dc2738;
 }
 
-#page-container {
+.page-container {
   position: relative;
   min-height: 100vh;
 }
 
-#content-wrap,
-#page-container .container {
+.content-wrap,
+.page-container .container {
   padding-bottom: 7rem;
 }
 
@@ -269,11 +279,11 @@ footer p span {
 }
 
 /* MOVIE DETAILS PAGE CODE */
-#movie {
+.movie {
   margin-top: 2rem;
 }
 
-#title {
+.title {
   color: #dc2738;
 }
 
@@ -286,31 +296,55 @@ footer p span {
   font-size: 18px;
 }
 
-#movie h3 {
+.movie h3 {
   color: #004c74;
 }
 
-#actors li {
-  width: 12%;
-  margin-right: 17px;
-  padding: 5px 0;
-  vertical-align: top;
+.actors {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  background-color: ghostwhite;
 }
 
-#actors li a img {
-  width: 7rem;
-  height: 8rem;
-  border-radius: 50%;
-  margin-bottom: 0.3em;
+.actors span:first-of-type {
+  margin-left: 20px;
 }
 
-#actors li h6 {
+.actors span {
+  flex: 0 0 auto;
+  width: 8rem;
+  margin-right: 20px;
+  padding-top: 10px;
+}
+
+.actors span a img {
+  width: 8rem;
+  height: 10rem;
+  margin-bottom: 0.5em;
+}
+
+.actors span h6 {
   text-align: center;
   font-size: 18px;
 }
 
-#actors li p {
+.actors span h6:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.5s;
+  color: #004c74;
+}
+
+.actors span p {
+  margin-bottom: 0;
   text-align: center;
   color: #636363;
   font-size: 13px;
+}
+
+.actors span a img:hover {
+  transform: scale(0.87);
+  transition: 1s;
+  box-shadow: 3px 3px 10px #004c74, -3px -3px 10px #004c74;
 }
