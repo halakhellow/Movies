@@ -347,3 +347,14 @@ footer p span {
   filter: invert(100%);
   width: 2rem;
 }
+
+@media (max-width:600px) {
+  .col-4 {
+    max-width: none;
+    flex: none;
+  }
+
+  .img-thumbnail {
+    max-width: 70%;
+  }
+}
