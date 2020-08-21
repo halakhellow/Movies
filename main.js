@@ -312,16 +312,21 @@ function getMovie() {
       let actorsList = document.getElementById("actors");
       if (data.cast.length === 0) {
         actorsList.innerHTML += "No Information";
-        actorsList.style.backgroundColor = "transparent";
+        actorsList.style.marginLeft = "0";
+        document.getElementById("prev-btn").style.display = "none";
+        document.getElementById("next-btn").style.display = "none";
       } else {
         for (let i = 0; i < data.cast.length; i++) {
-          let actor = document.createElement("span"),
+          let actorContainer = document.createElement("div"),
+            actor = document.createElement("div"),
             actorPage = document.createElement("a"),
             actorImg = document.createElement("img"),
             actorName = document.createElement("h6"),
             actorCharacter = document.createElement("p");
 
-          actor.classList.add("nav-item");
+          if (i === 0) actorContainer.classList.add("active");
+          actorContainer.classList.add("carousel-item");
+
           if (data.cast[i].profile_path == null) {
             actorImg.setAttribute("src", "assets/images/noactorimg.jpg");
           } else {
@@ -341,7 +346,8 @@ function getMovie() {
           actor.appendChild(actorPage);
           actor.appendChild(actorName);
           actor.appendChild(actorCharacter);
-          actorsList.appendChild(actor);
+          actorContainer.appendChild(actor);
+          actorsList.appendChild(actorContainer);
 
           actorName.onclick = function () {
             actorPage.click();
