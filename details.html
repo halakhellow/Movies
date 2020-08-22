@@ -53,7 +53,7 @@
             <div id="movie" class="movie">
                 <div class="row">
                     <div class="col-4">
-                        <img id="poster" class="img-fluid img-thumbnail">
+                        <img id="poster" class="img-thumbnail">
                     </div>
                     <div class="col-8">
                         <h1 id="title" class="title"></h1> <br>
@@ -70,7 +70,15 @@
                 <h3>About :</h3>
                 <p id="overview"></p>
                 <h3>Actors :</h3>
-                <nav id="actors" class="actors"></nav>
+                <div id="carousel" class="carousel" data-interval="false">
+                    <div id="actors" class="carousel-inner actors row w-100"></div>
+                    <a id="prev-btn" class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a id="next-btn" class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
                 <br>
                 <a id="tmdb-url" target="_blank" class="btn btn-danger ">View TMDB Page</a>
             </div>

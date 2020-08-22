@@ -68,22 +68,16 @@ function makeCard(result) {
     moviePageLink = document.createElement("a");
 
   movieCard.classList.add("card", "border-dark");
-  moviePoster.setAttribute(
-    "src",
-    `https://image.tmdb.org/t/p/w500/${result.poster_path}`
-  );
-  if (result.poster_path == null) {
-    moviePoster.setAttribute("src", "assets/images/noimage.png");
-  }
+  moviePoster.setAttribute("src", `https://image.tmdb.org/t/p/w500/${result.poster_path}`);
+
+  if (result.poster_path == null) moviePoster.setAttribute("src", "assets/images/noimage.png");
+  if (result.release_date == "") yearTag.innerHTML = "Year Released : unKnown ";
+
   moviePoster.classList.add("card-img-top");
   movieTitleTag.appendChild(movieTitle);
   movieTitleTag.classList.add("card-title");
   yearTag.appendChild(year);
   yearTag.classList.add("card-text");
-
-  if (result.release_date == "") {
-    yearTag.innerHTML = "Year Released : unKnown ";
-  }
 
   moviePageLink.appendChild(moviePoster);
   contentContainer.appendChild(movieTitleTag);
@@ -124,9 +118,7 @@ async function getMoviesList() {
     loader.style.display = "none";
     alertMsg.style.display = "block";
   } else {
-    let res = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${searchInput.value}`
-      ),
+    let res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${searchInput.value}`),
       data = await res.json();
     if (data.results.length == 0) {
       loader.style.display = "none";
@@ -143,53 +135,47 @@ async function getMoviesList() {
 
 async function getPopular() {
   clearInfos();
-  let res = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"
-    ),
+  let res = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
     data = await res.json();
   data.results.map((result) => {
     makeCard(result);
   });
   movieSectionName("Popular Movies");
 }
+
 async function getnowPlaying() {
   clearInfos();
-  let res = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"
-    ),
+  let res = await fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
     data = await res.json();
   data.results.map((result) => {
     makeCard(result);
   });
   movieSectionName("Now Playing Movies");
 }
+
 async function getUpcoming() {
   clearInfos();
-  let res = await fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"
-    ),
+  let res = await fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
     data = await res.json();
   data.results.map((result) => {
     makeCard(result);
   });
   movieSectionName("Upcoming Movies");
 }
+
 async function getTopRated() {
   clearInfos();
-  let res = await fetch(
-      "https://api.themoviedb.org/3/movie/top_rated?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"
-    ),
+  let res = await fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
     data = await res.json();
   data.results.map((result) => {
     makeCard(result);
   });
   movieSectionName("Top Rated Movies");
 }
+
 async function getLatest() {
   clearInfos();
-  let res = await fetch(
-      "https://api.themoviedb.org/3/movie/latest?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"
-    ),
+  let res = await fetch("https://api.themoviedb.org/3/movie/latest?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
     data = await res.json();
   makeCard(data);
   movieSectionName("Latest Movie");
@@ -230,123 +216,91 @@ function stars(rating) {
 function getMovie() {
   let movieId = localStorage.getItem("movieId");
 
-  fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`
-    )
+  fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
     .then((res) => res.json())
     .then((data) => {
-      document
-        .getElementById("poster")
-        .setAttribute(
-          "src",
-          `https://image.tmdb.org/t/p/original/${data.poster_path}`
-        );
-      if (data.poster_path == null) {
-        document
-          .getElementById("poster")
-          .setAttribute("src", "assets/images/noimage.png");
-      }
+      document.getElementById("poster").setAttribute("src", `https://image.tmdb.org/t/p/original/${data.poster_path}`);
+      if (data.poster_path == null) document.getElementById("poster").setAttribute("src", "assets/images/noimage.png");
+
       document.getElementById("title").innerHTML = data.title;
-      document.getElementById(
-        "date"
-      ).innerHTML = `<strong>Released : </strong> ${data.release_date}`;
-      if (data.release_date == "") {
-        document.getElementById("date").innerHTML =
-          "<strong>Released : </strong> Unknown";
-      }
-      document.getElementById(
-        "runtime"
-      ).innerHTML = `<strong>Runtime : </strong> ${data.runtime} Minutes`;
-      if (data.runtime == null) {
-        document.getElementById("runtime").innerHTML =
-          "<strong>Runtime : </strong> Unknown";
-      }
+
+      document.getElementById("date").innerHTML = `<strong>Released : </strong> ${data.release_date}`;
+      if (data.release_date == "") document.getElementById("date").innerHTML = "<strong>Released : </strong> Unknown";
+
+      document.getElementById("runtime").innerHTML = `<strong>Runtime : </strong> ${data.runtime} Minutes`;
+      if (data.runtime == null) document.getElementById("runtime").innerHTML = "<strong>Runtime : </strong> Unknown";
+
       data.overview == "" ?
-        (document.getElementById("overview").innerHTML =
-          " Overview Not Available ") :
+        (document.getElementById("overview").innerHTML = " Overview Not Available ") :
         (document.getElementById("overview").innerHTML = data.overview);
-      document.getElementById(
-        "tmdb-url"
-      ).href = `https://www.themoviedb.org/movie/${movieId}`;
+
+      document.getElementById("tmdb-url").href = `https://www.themoviedb.org/movie/${movieId}`;
 
       let starRate = stars(data.vote_average);
-      document.getElementById(
-        "rate"
-      ).innerHTML = `<strong>Rating : </strong> ${starRate}`;
+      document.getElementById("rate").innerHTML = `<strong>Rating : </strong> ${starRate}`;
 
-      let genre = "";
-      for (let i = 0; i < data.genres.length; i++) {
-        i == data.genres.length - 1 ?
-          (genre += ` ${data.genres[i].name} `) :
-          (genre += ` ${data.genres[i].name} , `);
-      }
-      document.getElementById(
-        "genre"
-      ).innerHTML = `<strong>Genre : </strong> ${genre}  `;
-      if (data.genres.length == 0) {
-        document.getElementById("genre").innerHTML =
-          "<strong>Genre : </strong> Unknown";
-      }
+      let genres = "";
+      data.genres.map((genre, index) => {
+        index == data.genres.length - 1 ? (genres += ` ${genre.name} `) : (genres += ` ${genre.name} , `);
+      });
+      document.getElementById("genre").innerHTML = `<strong>Genre : </strong> ${genres}  `;
+      if (data.genres.length == 0) document.getElementById("genre").innerHTML = "<strong>Genre : </strong> Unknown";
     });
 
-  fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`
-    )
+  fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
     .then((res) => res.json())
     .then((data) => {
-      for (let i = 0; i < data.crew.length; i++) {
-        if (data.crew[i].job == "Director") {
+      data.crew.map((person) => {
+        if (person.job == "Director") {
           document.getElementById("director").classList.add("list-group-item");
-          document.getElementById(
-            "director"
-          ).innerHTML = `<strong>Director : </strong> ${data.crew[i].name}`;
+          document.getElementById("director").innerHTML = `<strong>Director : </strong> ${person.name}`;
         }
-        if (data.crew[i].job == "Screenplay" || data.crew[i].job == "Writer") {
+        if (person.job == "Screenplay" || person.job == "Writer") {
           document.getElementById("writer").classList.add("list-group-item");
-          document.getElementById(
-            "writer"
-          ).innerHTML = `<strong>Writer : </strong> ${data.crew[i].name}`;
+          document.getElementById("writer").innerHTML = `<strong>Writer : </strong> ${person.name}`;
         }
-      }
+      })
 
       let actorsList = document.getElementById("actors");
       if (data.cast.length === 0) {
         actorsList.innerHTML += "No Information";
-        actorsList.style.backgroundColor = "transparent";
+        actorsList.style.marginLeft = "0";
+        document.getElementById("prev-btn").style.display = "none";
+        document.getElementById("next-btn").style.display = "none";
       } else {
-        for (let i = 0; i < data.cast.length; i++) {
-          let actor = document.createElement("span"),
+        data.cast.map((cast, index) => {
+          let actorContainer = document.createElement("div"),
+            actor = document.createElement("div"),
             actorPage = document.createElement("a"),
             actorImg = document.createElement("img"),
             actorName = document.createElement("h6"),
             actorCharacter = document.createElement("p");
 
-          actor.classList.add("nav-item");
-          if (data.cast[i].profile_path == null) {
-            actorImg.setAttribute("src", "assets/images/noactorimg.jpg");
-          } else {
-            actorImg.setAttribute(
-              "src",
-              `https://image.tmdb.org/t/p/original/${data.cast[i].profile_path}`
-            );
-          }
+          if (index === 0) actorContainer.classList.add("active");
+
+          actorContainer.classList.add("carousel-item");
+
+          if (cast.profile_path == null) actorImg.setAttribute("src", "assets/images/noactorimg.jpg");
+          else actorImg.setAttribute("src", `https://image.tmdb.org/t/p/original/${cast.profile_path}`);
+
           actorImg.classList.add("img-fluid");
           actorPage.appendChild(actorImg);
-          actorPage.href = `https://www.themoviedb.org/person/${data.cast[i].id}`;
+          actorPage.href = `https://www.themoviedb.org/person/${cast.id}`;
           actorPage.setAttribute("target", "_blank");
-          actorName.innerHTML = data.cast[i].name;
-          actorCharacter.innerHTML = `as ${data.cast[i].character}`;
-          if (data.cast[i].character == "") actorCharacter.innerHTML = `UnKnown Character`;
+          actorName.innerHTML = cast.name;
+          actorCharacter.innerHTML = `as ${cast.character}`;
+          if (cast.character == "") actorCharacter.innerHTML = `UnKnown Character`;
 
           actor.appendChild(actorPage);
           actor.appendChild(actorName);
           actor.appendChild(actorCharacter);
-          actorsList.appendChild(actor);
+          actorContainer.appendChild(actor);
+          actorsList.appendChild(actorContainer);
 
           actorName.onclick = function () {
             actorPage.click();
           }
-        }
+        })
       }
     });
 }
