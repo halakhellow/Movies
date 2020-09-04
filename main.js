@@ -84,8 +84,8 @@ function makeCard(result) {
   contentContainer.appendChild(yearTag);
   contentContainer.classList.add("card-body");
 
+  moviePageLink.appendChild(contentContainer);
   movieCard.appendChild(moviePageLink);
-  movieCard.appendChild(contentContainer);
   moviesList.appendChild(movieCard);
 
   moviePageLink.onclick = function (e) {
