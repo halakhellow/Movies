@@ -49,8 +49,8 @@ function makeCard(result) {
   movieCard.classList.add("card", "border-dark");
   moviePoster.setAttribute("src", `https://image.tmdb.org/t/p/w500/${result.poster_path}`);
 
-  if (result.poster_path == null) moviePoster.setAttribute("src", "assets/images/noimage.png");
-  if (result.release_date == "") yearTag.innerHTML = "Year Released : unKnown ";
+  if (result.poster_path === null) moviePoster.setAttribute("src", "assets/images/noimage.png");
+  if (result.release_date === "") yearTag.innerHTML = "Year Released : unKnown ";
 
   moviePoster.classList.add("card-img-top");
   movieTitleTag.appendChild(movieTitle);
@@ -163,17 +163,17 @@ function getMovie() {
     .then((res) => res.json())
     .then((data) => {
       document.getElementById("poster").setAttribute("src", `https://image.tmdb.org/t/p/original/${data.poster_path}`);
-      if (data.poster_path == null) document.getElementById("poster").setAttribute("src", "assets/images/noimage.png");
+      if (data.poster_path === null) document.getElementById("poster").setAttribute("src", "assets/images/noimage.png");
 
       document.getElementById("title").innerHTML = data.title;
 
       document.getElementById("date").innerHTML = `<strong>Released : </strong> ${data.release_date}`;
-      if (data.release_date == "") document.getElementById("date").innerHTML = "<strong>Released : </strong> Unknown";
+      if (data.release_date === "") document.getElementById("date").innerHTML = "<strong>Released : </strong> Unknown";
 
       document.getElementById("runtime").innerHTML = `<strong>Runtime : </strong> ${data.runtime} Minutes`;
-      if (data.runtime == null) document.getElementById("runtime").innerHTML = "<strong>Runtime : </strong> Unknown";
+      if (data.runtime === null) document.getElementById("runtime").innerHTML = "<strong>Runtime : </strong> Unknown";
 
-      data.overview == "" ?
+      data.overview === "" ?
         (document.getElementById("overview").innerHTML = " Overview Not Available ") :
         (document.getElementById("overview").innerHTML = data.overview);
 
@@ -184,21 +184,21 @@ function getMovie() {
 
       let genres = "";
       data.genres.map((genre, index) => {
-        index == data.genres.length - 1 ? (genres += ` ${genre.name} `) : (genres += ` ${genre.name} , `);
+        index === data.genres.length - 1 ? (genres += ` ${genre.name} `) : (genres += ` ${genre.name} , `);
       });
       document.getElementById("genre").innerHTML = `<strong>Genre : </strong> ${genres}  `;
-      if (data.genres.length == 0) document.getElementById("genre").innerHTML = "<strong>Genre : </strong> Unknown";
+      if (data.genres.length === 0) document.getElementById("genre").innerHTML = "<strong>Genre : </strong> Unknown";
     });
 
   fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
     .then((res) => res.json())
     .then((data) => {
       data.crew.map((person) => {
-        if (person.job == "Director") {
+        if (person.job === "Director") {
           document.getElementById("director").classList.add("list-group-item");
           document.getElementById("director").innerHTML = `<strong>Director : </strong> ${person.name}`;
         }
-        if (person.job == "Screenplay" || person.job == "Writer") {
+        if (person.job === "Screenplay" || person.job === "Writer") {
           document.getElementById("writer").classList.add("list-group-item");
           document.getElementById("writer").innerHTML = `<strong>Writer : </strong> ${person.name}`;
         }
@@ -223,7 +223,7 @@ function getMovie() {
 
           actorContainer.classList.add("carousel-item");
 
-          if (cast.profile_path == null) actorImg.setAttribute("src", "assets/images/noactorimg.jpg");
+          if (cast.profile_path === null) actorImg.setAttribute("src", "assets/images/noactorimg.jpg");
           else actorImg.setAttribute("src", `https://image.tmdb.org/t/p/original/${cast.profile_path}`);
 
           actorImg.classList.add("img-fluid");
