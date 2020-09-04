@@ -35,6 +35,7 @@ nav ul li .nav-link {
 }
 
 nav ul li .nav-link:hover {
+  cursor: pointer;
   color: #dc3438;
   transition: 0.5s;
 }
