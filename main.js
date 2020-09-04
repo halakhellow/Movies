@@ -10,48 +10,27 @@ let searchInput = document.getElementById("search-input"),
   alertMsg = document.getElementById("alert-msg"),
   moviesList = document.getElementById("movies");
 
-searchInput.addEventListener("keydown", function (event) {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    loader.style.display = "block";
-    alertMsg.style.display = "none";
-    getSearchResults();
-  }
-});
-
-searchButton.addEventListener("click", function (event) {
+function handleSearch() {
   event.preventDefault();
   loader.style.display = "block";
   alertMsg.style.display = "none";
   getSearchResults();
-});
+}
+searchInput.addEventListener("keydown", function (event) {
+  (event.keyCode === 13) && handleSearch(event)
+})
+searchButton.addEventListener("click", handleSearch.bind(event));
 
-nowPlayingMovies.addEventListener("click", function (event) {
+function handleClick(type) {
   event.preventDefault();
   loader.style.display = "block";
-  getMovies("Now_Playing");
-});
-
-upcomingMovies.addEventListener("click", function (event) {
-  event.preventDefault();
-  loader.style.display = "block";
-  getMovies("Upcoming");
-});
-
-popularMovies.addEventListener("click", function (event) {
-  event.preventDefault();
-  getMovies("Popular");
-});
-topRatedMovies.addEventListener("click", function (event) {
-  event.preventDefault();
-  loader.style.display = "block";
-  getMovies("Top_Rated");
-});
-latestMovie.addEventListener("click", function (event) {
-  event.preventDefault();
-  loader.style.display = "block";
-  getMovies("Latest");
-});
+  getMovies(type);
+}
+nowPlayingMovies.addEventListener("click", handleClick.bind(event, "Now_Playing"));
+upcomingMovies.addEventListener("click", handleClick.bind(event, "Upcoming"));
+popularMovies.addEventListener("click", handleClick.bind(event, "Popular"));
+topRatedMovies.addEventListener("click", handleClick.bind(event, "Top_Rated"));
+latestMovie.addEventListener("click", handleClick.bind(event, "Latest"));
 
 window.onload = function () {
   nowPlayingMovies.click();
