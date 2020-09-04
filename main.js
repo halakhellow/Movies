@@ -15,7 +15,7 @@ searchInput.addEventListener("keydown", function (event) {
     event.preventDefault();
     loader.style.display = "block";
     alertMsg.style.display = "none";
-    getMoviesList();
+    getSearchResults();
   }
 });
 
@@ -23,34 +23,34 @@ searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   loader.style.display = "block";
   alertMsg.style.display = "none";
-  getMoviesList();
+  getSearchResults();
 });
 
 nowPlayingMovies.addEventListener("click", function (event) {
   event.preventDefault();
   loader.style.display = "block";
-  getnowPlaying();
+  getMovies("Now_Playing");
 });
 
 upcomingMovies.addEventListener("click", function (event) {
   event.preventDefault();
   loader.style.display = "block";
-  getUpcoming();
+  getMovies("Upcoming");
 });
 
 popularMovies.addEventListener("click", function (event) {
   event.preventDefault();
-  getPopular();
+  getMovies("Popular");
 });
 topRatedMovies.addEventListener("click", function (event) {
   event.preventDefault();
   loader.style.display = "block";
-  getTopRated();
+  getMovies("Top_Rated");
 });
 latestMovie.addEventListener("click", function (event) {
   event.preventDefault();
   loader.style.display = "block";
-  getLatest();
+  getMovies("Latest");
 });
 
 window.onload = function () {
@@ -113,7 +113,7 @@ function dismiss() {
   document.getElementById("dismiss").parentNode.style.display = "none";
 }
 
-async function getMoviesList() {
+async function getSearchResults() {
   if (searchInput.value === "") {
     loader.style.display = "none";
     alertMsg.style.display = "block";
@@ -133,52 +133,16 @@ async function getMoviesList() {
   }
 }
 
-async function getPopular() {
+async function getMovies(type) {
   clearInfos();
-  let res = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
+  let res = await fetch(`https://api.themoviedb.org/3/movie/${type.toLowerCase()}?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`),
     data = await res.json();
-  data.results.map((result) => {
-    makeCard(result);
-  });
-  movieSectionName("Popular Movies");
-}
-
-async function getnowPlaying() {
-  clearInfos();
-  let res = await fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
-    data = await res.json();
-  data.results.map((result) => {
-    makeCard(result);
-  });
-  movieSectionName("Now Playing Movies");
-}
-
-async function getUpcoming() {
-  clearInfos();
-  let res = await fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
-    data = await res.json();
-  data.results.map((result) => {
-    makeCard(result);
-  });
-  movieSectionName("Upcoming Movies");
-}
-
-async function getTopRated() {
-  clearInfos();
-  let res = await fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
-    data = await res.json();
-  data.results.map((result) => {
-    makeCard(result);
-  });
-  movieSectionName("Top Rated Movies");
-}
-
-async function getLatest() {
-  clearInfos();
-  let res = await fetch("https://api.themoviedb.org/3/movie/latest?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc"),
-    data = await res.json();
-  makeCard(data);
-  movieSectionName("Latest Movie");
+  (type === "Latest")
+    ? makeCard(data)
+    : data.results.map((result) => {
+      makeCard(result);
+    });
+  movieSectionName(`${type.replace(/_/g, ' ')} ${type === "Latest" ? "Movie" : "Movies"}`);
 }
 
 // MOVIE DETAILS PAGE CODE
