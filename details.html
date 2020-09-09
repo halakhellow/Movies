@@ -16,29 +16,30 @@
         <nav class="navbar navbar-expand-sm justify-content-between p-3">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a id="nowplaying-btn" class="nav-link">Home</a>
+                    <a id="nowplaying-btn" class="nav-link" href="index.html?movies=Now_Playing">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a id="popular-btn" class="nav-link">Popular Movies</a>
+                    <a id="popular-btn" class="nav-link" href="index.html?movies=Popular">Popular Movies</a>
                 </li>
                 <li class="nav-item">
-                    <a id="upcoming-btn" class="nav-link">Upcoming Movies</a>
+                    <a id="upcoming-btn" class="nav-link" href="index.html?movies=Upcoming">Upcoming Movies</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                         See More
                     </a>
                     <div class="dropdown-menu">
-                        <a id="top-rated" class="dropdown-item" href="#">Top Rated Movies</a>
-                        <a id="latest" class="dropdown-item" href="#">Latest Movie</a>
+                        <a id="top-rated" class="dropdown-item" href="index.html?movies=Top_Rated">Top Rated
+                            Movies</a>
+                        <a id="latest" class="dropdown-item" href="index.html?movies=Latest">Latest Movie</a>
                     </div>
                 </li>
             </ul>
             <form>
                 <input id="search-input" class="search-input" placeholder="Search . . .">
-                <button id="search-btn" class="search-btn">
+                <a id="search-btn" class="search-btn">
                     <span class="fa fa-search"></span>
-                </button>
+                </a>
             </form>
         </nav>
         <div id="loader"></div>

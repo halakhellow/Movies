@@ -1,40 +1,53 @@
 "use strict";
 let searchInput = document.getElementById("search-input"),
   searchButton = document.getElementById("search-btn"),
-  nowPlayingMovies = document.getElementById("nowplaying-btn"),
-  popularMovies = document.getElementById("popular-btn"),
-  upcomingMovies = document.getElementById("upcoming-btn"),
-  topRatedMovies = document.getElementById("top-rated"),
-  latestMovie = document.getElementById("latest"),
+  Now_Playing = document.getElementById("nowplaying-btn"),
+  Popular = document.getElementById("popular-btn"),
+  Upcoming = document.getElementById("upcoming-btn"),
+  Top_Rated = document.getElementById("top-rated"),
+  Latest = document.getElementById("latest"),
   loader = document.getElementById("loader"),
   alertMsg = document.getElementById("alert-msg"),
   moviesList = document.getElementById("movies");
 
-function handleSearch() {
-  event.preventDefault();
+
+function handleSearch(search) {
   loader.style.display = "block";
   alertMsg.style.display = "none";
-  getSearchResults();
+  searchButton.href = `index.html?movies=${search}`;
 }
 searchInput.addEventListener("keydown", function (event) {
-  (event.keyCode === 13) && handleSearch(event)
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    handleSearch(searchInput.value)
+    searchButton.click()
+  }
 })
-searchButton.addEventListener("click", handleSearch.bind(event));
+searchButton.addEventListener("click", function () {
+  handleSearch(searchInput.value)
+});
 
-function handleClick(type) {
-  event.preventDefault();
-  loader.style.display = "block";
-  getMovies(type);
+let params = new URLSearchParams(window.location.search);
+
+function handleNav(movieType) {
+  if (movieType === null) return;
+  else if (!["Now_Playing", "Popular", "Top_Rated", "Latest", "Upcoming"].includes(movieType)) {
+    loader.style.display = "block";
+    getSearchResults(params.get("movies"));
+  } else {
+    loader.style.display = "block";
+    getMovies(movieType);
+    eval(movieType).focus();
+  }
 }
-nowPlayingMovies.addEventListener("click", handleClick.bind(event, "Now_Playing"));
-upcomingMovies.addEventListener("click", handleClick.bind(event, "Upcoming"));
-popularMovies.addEventListener("click", handleClick.bind(event, "Popular"));
-topRatedMovies.addEventListener("click", handleClick.bind(event, "Top_Rated"));
-latestMovie.addEventListener("click", handleClick.bind(event, "Latest"));
+handleNav(params.get("movies"))
 
 window.onload = function () {
-  nowPlayingMovies.click();
-};
+  if (window.location.search === "") {
+    getMovies("Now_Playing");
+    Now_Playing.focus();
+  }
+}
 
 function makeCard(result) {
   let movieCard = document.createElement("div"),
@@ -92,12 +105,12 @@ function dismiss() {
   document.getElementById("dismiss").parentNode.style.display = "none";
 }
 
-async function getSearchResults() {
-  if (searchInput.value === "") {
+async function getSearchResults(search) {
+  if (search === "") {
     loader.style.display = "none";
     alertMsg.style.display = "block";
   } else {
-    let res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${searchInput.value}`),
+    let res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc&query=${search}`),
       data = await res.json();
     if (data.results.length == 0) {
       loader.style.display = "none";
@@ -107,7 +120,7 @@ async function getSearchResults() {
       data.results.map((result) => {
         makeCard(result);
       });
-      movieSectionName(`Results for " ${searchInput.value} "`);
+      movieSectionName(`Results for " ${search} "`);
     }
   }
 }
