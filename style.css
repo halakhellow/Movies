@@ -97,6 +97,12 @@ nav form:hover .search-btn {
   color: #2f3640;
   height: 2.2rem;
 }
+nav form .search-btn:hover{
+  cursor: pointer;
+}
+nav form .search-btn[href]{
+  text-decoration: none;
+}
 
 .loader {
   display: none;
