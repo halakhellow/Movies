@@ -140,8 +140,7 @@ async function getMovies(type) {
 // MOVIE DETAILS PAGE CODE
 
 function movieDetails(id) {
-  localStorage.setItem("movieId", id);
-  window.location = "details.html";
+  window.location = `details.html?id=${id}`;
 }
 
 function stars(rating) {
@@ -170,7 +169,7 @@ function stars(rating) {
 }
 
 function getMovie() {
-  let movieId = localStorage.getItem("movieId");
+  let movieId = params.get("id");
 
   fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=9fce1e77cbf1f8f4eb80c8366d686cfc`)
     .then((res) => res.json())
